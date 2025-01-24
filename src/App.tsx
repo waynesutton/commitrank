@@ -176,20 +176,22 @@ export function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FFFFFF] via-[#F3F2F2] to-[#FFFFFF]">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-2">Commit Rank</h1>
+        <h1 className="text-4xl font-bold text-center mb-2 pt-10">Commit Rank</h1>
 
         <p className="text-center text-gray-600 mb-2">
           Chat with any GitHub public profile and see their ranking. Just paste the GitHub profile
           URL below.
         </p>
 
-        <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
-          Built with
+        <div
+          className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8
+        ">
+          Open Source Project Built with
           <a
-            href="https://convex.dev"
+            href="https://convex.link/C9EptlP"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-orange-500 hover:underline flex items-center gap-1">
+            className="text-grey-500 hover:underline flex items-center gap-1">
             <Database size={16} />
             Convex.dev
           </a>
@@ -198,7 +200,7 @@ export function App() {
             href="https://tanstack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:underline">
+            className="text-grey-500 hover:underline">
             TanStack.com
           </a>
           {" | "}
@@ -206,7 +208,7 @@ export function App() {
             href="https://bolt.new"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:underline">
+            className="text-grey-500 hover:underline">
             Bolt.new
           </a>
         </div>
