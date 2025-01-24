@@ -178,7 +178,7 @@ export function App() {
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-2 pt-10">Commit Rank</h1>
 
-        <p className="text-center text-gray-600 mb-2">
+        <p className="text-xl text-center text-gray-600 mb-2">
           Chat with any GitHub public profile and see their ranking. Just paste the GitHub profile
           URL below.
         </p>
@@ -186,7 +186,7 @@ export function App() {
         <div
           className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8
         ">
-          Open Source Project Built with
+          Open Source project Built with
           <a
             href="https://convex.link/C9EptlP"
             target="_blank"
