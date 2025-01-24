@@ -197,7 +197,7 @@ export function App() {
         <div
           className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8
         ">
-          <a href="https://github.com/waynesutton/commitrank">Open Source project</a> built with
+          <a href="https://github.com/waynesutton/commitrank">Open Source project</a>built with
           <a
             href="https://convex.link/C9EptlP"
             target="_blank"
