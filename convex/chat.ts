@@ -66,13 +66,13 @@ export const sendMessage = mutation({
 
 export const getMessages = query({
   args: {
-    userId: v.string(),
+    profileName: v.string(),
   },
   handler: async (ctx, args) => {
     try {
       const messages = await ctx.db
         .query("messages")
-        .filter((q) => q.eq(q.field("userId"), args.userId))
+        .filter((q) => q.eq(q.field("userId"), args.profileName))
         .order("desc")
         .take(100);
 
