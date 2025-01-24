@@ -65,8 +65,15 @@ export const sendMessage = mutation({
 });
 
 export const getMessages = query({
-  args: { userId: v.string() },
+  args: {
+    userId: v.optional(v.string()),
+    profileName: v.optional(v.string()),
+  },
   handler: async (ctx, args) => {
+    if (!args.userId) {
+      return [];
+    }
+
     const messages = await ctx.db
       .query("messages")
       .filter((q) => q.eq(q.field("userId"), args.userId))
