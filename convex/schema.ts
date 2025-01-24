@@ -7,7 +7,7 @@ export default defineSchema({
     role: v.string(), // "user" or "assistant"
     createdAt: v.number(),
     userId: v.string(),
-  }),
+  }).index("by_userId", ["userId"]),
   profiles: defineTable({
     login: v.string(),
     name: v.string(),
@@ -22,5 +22,5 @@ export default defineSchema({
     location: v.optional(v.string()),
     commits: v.number(),
     usesConvex: v.boolean(),
-  }),
+  }).index("by_login", ["login"]),
 });

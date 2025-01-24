@@ -32,7 +32,7 @@ export const storeProfile = mutation({
     // Check if profile already exists
     const existing = await ctx.db
       .query("profiles")
-      .filter((q) => q.eq(q.field("login"), profile.login))
+      .withIndex("by_login", (q) => q.eq("login", profile.login))
       .first();
 
     if (existing) {
@@ -48,6 +48,6 @@ export const storeProfile = mutation({
 export const getProfiles = query({
   args: {},
   handler: async (ctx): Promise<Doc<"profiles">[]> => {
-    return await ctx.db.query("profiles").order("desc").collect();
+    return await ctx.db.query("profiles").order("desc").take(1000);
   },
 });

@@ -120,7 +120,7 @@ export const getMessages = query({
     try {
       const messages = await ctx.db
         .query("messages")
-        .filter((q) => q.eq(q.field("userId"), args.userId))
+        .withIndex("by_userId", (q) => q.eq("userId", args.userId))
         .order("desc")
         .take(100);
 
