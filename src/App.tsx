@@ -226,7 +226,7 @@ export function App() {
             <button
               type="submit"
               className="px-6 py-2 bg-[#222222] text-white rounded-lg hover:bg-[#333333] disabled:opacity-50">
-              Generate Card
+              Start Ranking
             </button>
           </div>
           {error && <p className="text-red-500 text-center mt-2">{error}</p>}
@@ -235,7 +235,7 @@ export function App() {
         <div className="flex gap-8">
           <div className="w-72 flex-shrink-0">
             <div className="sticky top-4 bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold mb-6">Commit Categories</h2>
+              <h2 className="text-xl font-bold mb-6">Ranking Categories</h2>
 
               <div className="space-y-6">
                 {categories.map((category) => (
