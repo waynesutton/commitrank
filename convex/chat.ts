@@ -1,50 +1,66 @@
-import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+import { api } from "./_generated/api";
 import { OpenAI } from "openai";
 import { ConvexError } from "convex/values";
 import { internalMutation, internalQuery } from "./_generated/server";
 import { internal } from "./_generated/api";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-});
+// Define the message type
+type Message = {
+  role: "user" | "assistant" | "system";
+  text: string;
+};
 
-export const sendMessage = internalMutation({
-  args: { message: v.string(), userId: v.string() },
+export const sendMessage = mutation({
+  args: {
+    message: v.string(),
+    userId: v.string(),
+  },
   handler: async (ctx, args) => {
-    await ctx.db.insert("messages", {
+    // Store the user's message
+    const userMessage = await ctx.db.insert("messages", {
       text: args.message,
       role: "user",
-      createdAt: Date.now(),
       userId: args.userId,
+      createdAt: Date.now(),
     });
 
+    // Initialize OpenAI
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+
+    // Get chat history
     const messages = await ctx.db
       .query("messages")
       .filter((q) => q.eq(q.field("userId"), args.userId))
       .order("asc")
-      .collect();
+      .take(100);
 
-    const formattedMessages = messages.map((msg) => ({
-      role: msg.role,
-      content: msg.text,
+    const formattedMessages: Message[] = messages.map((msg) => ({
+      role: msg.role as "user" | "assistant" | "system",
+      text: msg.text,
     }));
 
+    // Get OpenAI response
     const completion = await openai.chat.completions.create({
-      messages: formattedMessages,
+      messages: formattedMessages.map((msg) => ({
+        role: msg.role,
+        content: msg.text,
+      })),
       model: "gpt-3.5-turbo",
     });
 
-    const aiResponse = completion.choices[0].message.content;
-
-    await ctx.db.insert("messages", {
-      text: aiResponse ?? "Sorry, I couldn't process that.",
+    // Store the AI's response
+    const aiMessage = await ctx.db.insert("messages", {
+      text: completion.choices[0].message.content ?? "",
       role: "assistant",
-      createdAt: Date.now(),
       userId: args.userId,
+      createdAt: Date.now(),
     });
 
-    return aiResponse;
+    return aiMessage;
   },
 });
 
