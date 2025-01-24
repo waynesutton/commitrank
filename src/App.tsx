@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useState, useRef } from "react";
 import axios from "axios";
 import {
   Search,
@@ -14,14 +13,28 @@ import {
   Github,
   MessageCircle,
 } from "lucide-react";
-import { GitHubProfile, ProfileData } from "./types";
+import { GitHubProfile } from "./types";
 import ProfileCard from "./components/ProfileCard";
+import { useMutation, useQuery } from "convex/react";
+import { api } from "../convex/_generated/api";
+import { Doc } from "../convex/_generated/dataModel";
+
+type Profile = Doc<"profiles"> & GitHubProfile;
 
 export function App() {
   const [url, setUrl] = useState("");
-  const [profiles, setProfiles] = useState<ProfileData[]>([]);
   const [error, setError] = useState("");
   const [visibleCards, setVisibleCards] = useState(6);
+  const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const storeProfile = useMutation(api.profiles.storeProfile);
+  const profiles = useQuery(api.profiles.getProfiles) || [];
+
+  const scrollToProfile = (login: string) => {
+    profileRefs.current[login]?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
 
   const checkForConvex = async (username: string) => {
     const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`);
@@ -48,8 +61,14 @@ export function App() {
     return results.some((hasConvex) => hasConvex);
   };
 
-  const fetchProfileMutation = useMutation({
-    mutationFn: async (url: string) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!url.includes("github.com")) {
+      setError("Please enter a valid GitHub profile URL");
+      return;
+    }
+
+    try {
       const username = url.split("/").pop();
       if (!username) throw new Error("Invalid GitHub URL");
 
@@ -61,30 +80,30 @@ export function App() {
 
       const commits = commitsResponse.data.total_count;
       const usesConvex = await checkForConvex(username);
+      const profile = profileResponse.data;
 
-      return {
-        profile: profileResponse.data,
+      await storeProfile({
+        login: profile.login,
+        name: profile.name,
+        avatar_url: profile.avatar_url,
+        bio: profile.bio || "",
+        public_repos: profile.public_repos,
+        followers: profile.followers,
+        following: profile.following,
+        html_url: profile.html_url,
+        twitter_username: profile.twitter_username,
+        blog: profile.blog,
+        location: profile.location,
         commits,
         usesConvex,
-      };
-    },
-    onSuccess: (data) => {
-      setProfiles((prev) => [data, ...prev]);
+      });
+
       setUrl("");
       setError("");
-    },
-    onError: () => {
+    } catch (error) {
+      console.error("Error fetching GitHub profile:", error);
       setError("Error fetching GitHub profile. Please check the URL and try again.");
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!url.includes("github.com")) {
-      setError("Please enter a valid GitHub profile URL");
-      return;
     }
-    fetchProfileMutation.mutate(url);
   };
 
   const handleLoadMore = () => {
@@ -94,13 +113,13 @@ export function App() {
   const visibleProfiles = profiles.slice(0, visibleCards);
   const hasMoreProfiles = profiles.length > visibleCards;
 
-  const overloadProfiles = profiles.filter((p) => p.commits >= 100000);
-  const hackerProfiles = profiles.filter((p) => p.commits >= 10000 && p.commits < 100000);
-  const wizardProfiles = profiles.filter((p) => p.commits >= 5000 && p.commits < 10000);
-  const samuraiProfiles = profiles.filter((p) => p.commits >= 1000 && p.commits < 5000);
-  const explorerProfiles = profiles.filter((p) => p.commits < 10);
-  const noobProfiles = profiles.filter((p) => p.commits >= 10 && p.commits < 1000);
-  const convexProfiles = profiles.filter((p) => p.usesConvex);
+  const overloadProfiles = profiles.filter((p: Profile) => p.commits >= 100000);
+  const hackerProfiles = profiles.filter((p: Profile) => p.commits >= 10000 && p.commits < 100000);
+  const wizardProfiles = profiles.filter((p: Profile) => p.commits >= 5000 && p.commits < 10000);
+  const samuraiProfiles = profiles.filter((p: Profile) => p.commits >= 1000 && p.commits < 5000);
+  const explorerProfiles = profiles.filter((p: Profile) => p.commits < 10);
+  const noobProfiles = profiles.filter((p: Profile) => p.commits >= 10 && p.commits < 1000);
+  const convexProfiles = profiles.filter((p: Profile) => p.usesConvex);
 
   const categories = [
     {
@@ -155,7 +174,7 @@ export function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FFFFFF] to-[#DCDCDC] py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-[#FFFFFF] via-[#F3F2F2] to-[#FFFFFF]">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-2">Commit Rank</h1>
 
@@ -165,12 +184,12 @@ export function App() {
         </p>
 
         <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
-          Open Source project built with
+          Built with
           <a
-            href="https://convex.link/C9EptlP"
+            href="https://convex.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black hover:none flex items-center gap-1">
+            className="text-orange-500 hover:underline flex items-center gap-1">
             <Database size={16} />
             Convex.dev
           </a>
@@ -179,7 +198,7 @@ export function App() {
             href="https://tanstack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black hover:none">
+            className="text-blue-500 hover:underline">
             TanStack.com
           </a>
           {" | "}
@@ -187,7 +206,7 @@ export function App() {
             href="https://bolt.new"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black hover:none">
+            className="text-blue-500 hover:underline">
             Bolt.new
           </a>
         </div>
@@ -206,9 +225,8 @@ export function App() {
             </div>
             <button
               type="submit"
-              disabled={fetchProfileMutation.isPending}
               className="px-6 py-2 bg-[#222222] text-white rounded-lg hover:bg-[#333333] disabled:opacity-50">
-              {fetchProfileMutation.isPending ? "Loading..." : "Start Ranking"}
+              Generate Card
             </button>
           </div>
           {error && <p className="text-red-500 text-center mt-2">{error}</p>}
@@ -217,7 +235,7 @@ export function App() {
         <div className="flex gap-8">
           <div className="w-72 flex-shrink-0">
             <div className="sticky top-4 bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold mb-6">Ranking Levels</h2>
+              <h2 className="text-xl font-bold mb-6">Commit Categories</h2>
 
               <div className="space-y-6">
                 {categories.map((category) => (
@@ -233,10 +251,13 @@ export function App() {
                     </div>
                     {category.profiles.length > 0 && (
                       <div className="pl-7 space-y-2">
-                        {category.profiles.map(({ profile }) => (
-                          <p key={profile.login} className="text-sm text-gray-600">
+                        {category.profiles.map((profile: Profile) => (
+                          <button
+                            key={profile.login}
+                            onClick={() => scrollToProfile(profile.login)}
+                            className="text-sm text-gray-600 hover:text-[#222222] hover:underline block w-full text-left transition-colors">
                             @{profile.login}
-                          </p>
+                          </button>
                         ))}
                       </div>
                     )}
@@ -248,13 +269,10 @@ export function App() {
 
           <div className="flex-1">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {visibleProfiles.map((data, index) => (
-                <ProfileCard
-                  key={index}
-                  profile={data.profile}
-                  commits={data.commits}
-                  usesConvex={data.usesConvex}
-                />
+              {visibleProfiles.map((data: Profile) => (
+                <div key={data._id} ref={(el) => (profileRefs.current[data.login] = el)}>
+                  <ProfileCard profile={data} commits={data.commits} usesConvex={data.usesConvex} />
+                </div>
               ))}
             </div>
 
@@ -274,10 +292,7 @@ export function App() {
           <hr className="border-gray-200 mb-6" />
           <div className="text-center text-sm text-gray-500">
             <p className="mb-4">
-              Database Powered by{" "}
-              <a href="https://convex.link/C9EptlP" target="_blank" rel="noopener noreferrer">
-                Convex.dev
-              </a>
+              Database powered by <a href="https://convex.link/C9EptlP"> convex.dev</a>
             </p>
             <div className="flex justify-center gap-6">
               <a

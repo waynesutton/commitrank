@@ -1,6 +1,6 @@
 # Commit Rank
 
-A tool to help you find the best developers on GitHub.
+A tool to help you rank the best developers on GitHub.
 
 ## How it works
 

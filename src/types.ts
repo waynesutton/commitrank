@@ -7,9 +7,11 @@ export interface GitHubProfile {
   followers: number;
   following: number;
   html_url: string;
-  twitter_username: string | null;
-  blog: string;
-  location: string;
+  twitter_username?: string;
+  blog?: string;
+  location?: string;
+  commits: number;
+  usesConvex: boolean;
 }
 
 export interface ProfileData {
