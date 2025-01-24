@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Send, Bot } from "lucide-react";
 import { GitHubProfile } from "../types";
 import { useAction, useQuery } from "convex/react";
-import { api } from "@convex/_generated/api";
+import { api } from "../../convex/_generated/api";
+import { Doc } from "../../convex/_generated/dataModel";
 
 interface Message {
   text: string;
@@ -14,6 +15,8 @@ interface ChatBoxProps {
   commits: number;
   usesConvex: boolean;
 }
+
+type DbMessage = Doc<"messages">;
 
 export default function ChatBox({ profile, commits, usesConvex }: ChatBoxProps) {
   const [input, setInput] = useState("");
@@ -41,12 +44,10 @@ export default function ChatBox({ profile, commits, usesConvex }: ChatBoxProps) 
     }
   };
 
-  const formattedMessages = messages
-    .map((msg) => [
-      { text: msg.message, isAI: false },
-      { text: msg.response, isAI: true },
-    ])
-    .flat();
+  const formattedMessages = messages.map((msg: DbMessage) => ({
+    text: msg.text,
+    isAI: msg.role === "assistant",
+  }));
 
   return (
     <div className="mt-6 border rounded-lg overflow-hidden bg-white">
@@ -58,7 +59,7 @@ export default function ChatBox({ profile, commits, usesConvex }: ChatBoxProps) 
       </div>
 
       <div className="h-64 overflow-y-auto p-4 space-y-4">
-        {formattedMessages.map((message, index) => (
+        {formattedMessages.map((message: Message, index: number) => (
           <div key={index} className={`flex ${message.isAI ? "justify-start" : "justify-end"}`}>
             <div
               className={`max-w-[80%] rounded-lg p-3 ${

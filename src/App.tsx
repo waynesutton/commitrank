@@ -175,8 +175,19 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FFFFFF] via-[#F3F2F2] to-[#FFFFFF]">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-2 pt-10">Commit Rank</h1>
+      <div className="max-w-7xl mx-auto pt-10">
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <a href="https://commitrank.ai" className="flex items-center justify-center">
+            <img
+              src="/apple-touch-icon-180x180.png"
+              alt="Commit Rank Logo"
+              width={48}
+              height={48}
+            />
+
+            <h1 className="text-4xl font-bold text-center">CommitRank.AI</h1>
+          </a>
+        </div>
 
         <p className="text-xl text-center text-gray-600 mb-2">
           Chat with any GitHub public profile and see their ranking. Just paste the GitHub profile

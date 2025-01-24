@@ -1,5 +1,7 @@
 # Commit Rank
 
+The url is http://commitrank.ai
+
 A tool to help you rank the best developers on GitHub.
 
 ## How it works
