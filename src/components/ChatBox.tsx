@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Send, Bot } from "lucide-react";
 import { GitHubProfile } from "../types";
-import { useMutation, useQuery } from "convex/react";
+import { useAction, useQuery } from "convex/react";
 import { api } from "@convex/_generated/api";
 
 interface Message {
@@ -17,7 +17,7 @@ interface ChatBoxProps {
 
 export default function ChatBox({ profile, commits, usesConvex }: ChatBoxProps) {
   const [input, setInput] = useState("");
-  const sendMessage = useMutation(api.chat.sendMessage);
+  const sendMessage = useAction(api.chat.sendMessage);
   const messages = useQuery(api.chat.getMessages, { userId: profile.name }) || [];
   const [isLoading, setIsLoading] = useState(false);
 

@@ -155,7 +155,7 @@ export function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-[#FFFFFF] to-[#DCDCDC] py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-2">Commit Rank</h1>
 
