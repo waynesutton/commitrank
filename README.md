@@ -1,45 +1,99 @@
-# Commit Rank
+# CommitRank.AI 🏆
 
-The url is http://commitrank.ai
+CommitRank.AI is a modern web application that analyzes GitHub profiles, ranks developers based on their commit history, and provides an AI-powered chat interface to discuss their contributions.
 
-A tool to help you rank the best developers on GitHub.
+## Features
 
-## How it works
+- **Real-time GitHub Profile Analysis**: Fetches and analyzes GitHub profiles using the GitHub API
+- **Commit-based Ranking System**: Categorizes developers into ranks:
 
-1. Enter a GitHub username
-2. We check their GitHub profile and repositories
-3. We check their repositories for Convex usage
-4. We rank them based on their Convex usage
-5. We display the results
+  - 🌟 Overload (100,000+ commits)
+  - 💻 Hacker (10,000+ commits)
+  - 🔮 Wizard (5,000+ commits)
+  - ⚔️ Samurai (1,000+ commits)
+  - 🌱 Noob (10-999 commits)
+  - 🧭 Explorer (<10 commits)
+  - ⚡ Convex Developer (Uses Convex in repos)
 
-## How to use
+- **AI Chat Interface**: Engage in conversations about developers' commit history and coding patterns
+- **Real-time Database**: Powered by Convex for live updates and seamless data synchronization
+- **Modern UI**: Built with React and Tailwind CSS for a responsive, clean interface
 
-1. Enter a GitHub username
-2. Click "Check"
-3. Wait for the results
-4. See the results
+## Tech Stack
 
-## How it works
+- **Frontend**:
 
-1. We check the GitHub profile
-2. We check the repositories
-3. We check the repositories for Convex usage
-4. We rank the developers based on their Convex usage
-5. We display the results
+  - React with TypeScript
+  - Tailwind CSS for styling
+  - Lucide React for icons
+  - Vite for build tooling
 
-## How to run
+- **Backend**:
 
-1. Clone the repository
-2. Run `npm install`
-3. Run `npm run dev`
-4. Open the app in your browser
+  - Convex for backend and real-time database
+  - OpenAI API for AI chat functionality
+  - GitHub API for profile and commit data
 
-## Key Technologies
+- **Infrastructure**:
+  - Netlify for hosting
+  - Convex for serverless backend
+  - TypeScript for type safety
 
-- Convex
-- React
-- Tailwind
-- Lucide
-- Vercel
-- Tanstack Query
-- Axios
+## Local Development
+
+1. Clone the repository:
+   \`\`\`bash
+   git clone https://github.com/yourusername/commitrank.git
+   cd commitrank
+   \`\`\`
+
+2. Install dependencies:
+   \`\`\`bash
+   npm install
+   \`\`\`
+
+3. Set up environment variables:
+   \`\`\`bash
+   cp .env.example .env.local
+   \`\`\`
+
+Required environment variables:
+
+- \`CONVEX_DEPLOYMENT\`
+- \`OPENAI_API_KEY\`
+
+4. Start the development server:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+5. Start Convex development server:
+   \`\`\`bash
+   npx convex dev
+   \`\`\`
+
+## Project Structure
+
+- \`/src\` - React components and frontend code
+- \`/convex\` - Convex backend functions and schema
+- \`/public\` - Static assets and favicons
+- \`/types\` - TypeScript type definitions
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch: \`git checkout -b feature/amazing-feature\`
+3. Commit your changes: \`git commit -m 'Add amazing feature'\`
+4. Push to the branch: \`git push origin feature/amazing-feature\`
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built with [Convex](https://convex.dev)
+- Powered by [OpenAI](https://openai.com)
+- UI components from [TanStack](https://tanstack.com)
+- Development environment by [Bolt.new](https://bolt.new)
