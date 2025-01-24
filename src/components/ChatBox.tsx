@@ -18,7 +18,7 @@ interface ChatBoxProps {
 export default function ChatBox({ profile, commits, usesConvex }: ChatBoxProps) {
   const [input, setInput] = useState("");
   const sendMessage = useMutation(api.chat.sendMessage);
-  const messages = useQuery(api.chat.getMessages, { profileName: profile.name }) || [];
+  const messages = useQuery(api.chat.getMessages, { userId: profile.name }) || [];
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -29,7 +29,7 @@ export default function ChatBox({ profile, commits, usesConvex }: ChatBoxProps) 
     try {
       await sendMessage({
         message: input.trim(),
-        profileName: profile.name,
+        userId: profile.name,
         commits,
         usesConvex,
       });
