@@ -24,7 +24,7 @@ type Profile = Doc<"profiles"> & GitHubProfile;
 export function App() {
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
-  const [visibleCards, setVisibleCards] = useState(6);
+  const [visibleCards, setVisibleCards] = useState(1000);
   const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const storeProfile = useMutation(api.profiles.storeProfile);
   const profiles = useQuery(api.profiles.getProfiles) || [];
