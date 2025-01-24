@@ -167,7 +167,7 @@ export function App() {
         <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8">
           Open Source project built with
           <a
-            href="https://convex.dev"
+            href="https://convex.link/C9EptlP"
             target="_blank"
             rel="noopener noreferrer"
             className="text-black hover:none flex items-center gap-1">
@@ -273,7 +273,12 @@ export function App() {
         <footer className="mt-16">
           <hr className="border-gray-200 mb-6" />
           <div className="text-center text-sm text-gray-500">
-            <p className="mb-4">Database Powered by https://convex.dev</p>
+            <p className="mb-4">
+              Database Powered by{" "}
+              <a href="https://convex.link/C9EptlP" target="_blank" rel="noopener noreferrer">
+                Convex.dev
+              </a>
+            </p>
             <div className="flex justify-center gap-6">
               <a
                 href="https://twitter.com/convex_dev"
