@@ -84,16 +84,16 @@ export function App() {
 
       await storeProfile({
         login: profile.login,
-        name: profile.name,
+        name: profile.name || profile.login,
         avatar_url: profile.avatar_url,
         bio: profile.bio || "",
         public_repos: profile.public_repos,
         followers: profile.followers,
         following: profile.following,
         html_url: profile.html_url,
-        twitter_username: profile.twitter_username,
-        blog: profile.blog,
-        location: profile.location,
+        twitter_username: profile.twitter_username || undefined,
+        blog: profile.blog || undefined,
+        location: profile.location || undefined,
         commits,
         usesConvex,
       });

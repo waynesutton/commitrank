@@ -19,6 +19,16 @@ export const storeProfile = mutation({
     usesConvex: v.boolean(),
   },
   handler: async (ctx, profile) => {
+    // Sanitize the profile data
+    const sanitizedProfile = {
+      ...profile,
+      bio: profile.bio || "",
+      name: profile.name || profile.login, // Use login as fallback if name is missing
+      twitter_username: profile.twitter_username || undefined,
+      blog: profile.blog || undefined,
+      location: profile.location || undefined,
+    };
+
     // Check if profile already exists
     const existing = await ctx.db
       .query("profiles")
@@ -27,17 +37,17 @@ export const storeProfile = mutation({
 
     if (existing) {
       // Update existing profile
-      return await ctx.db.patch(existing._id, profile);
+      return await ctx.db.patch(existing._id, sanitizedProfile);
     }
 
     // Create new profile
-    return await ctx.db.insert("profiles", profile);
+    return await ctx.db.insert("profiles", sanitizedProfile);
   },
 });
 
 export const getProfiles = query({
   args: {},
   handler: async (ctx): Promise<Doc<"profiles">[]> => {
-    return await ctx.db.query("profiles").collect();
+    return await ctx.db.query("profiles").order("desc").collect();
   },
 });
