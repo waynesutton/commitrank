@@ -28,7 +28,7 @@ export const sendMessage = mutation({
 
     // Initialize OpenAI
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY!,
     });
 
     // Get chat history
@@ -66,20 +66,20 @@ export const sendMessage = mutation({
 
 export const getMessages = query({
   args: {
-    userId: v.optional(v.string()),
-    profileName: v.optional(v.string()),
+    userId: v.string(),
   },
   handler: async (ctx, args) => {
-    if (!args.userId) {
-      return [];
+    try {
+      const messages = await ctx.db
+        .query("messages")
+        .filter((q) => q.eq(q.field("userId"), args.userId))
+        .order("desc")
+        .take(100);
+
+      return messages.reverse();
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+      throw error;
     }
-
-    const messages = await ctx.db
-      .query("messages")
-      .filter((q) => q.eq(q.field("userId"), args.userId))
-      .order("desc")
-      .take(100);
-
-    return messages.reverse();
   },
 });
