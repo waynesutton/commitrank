@@ -290,7 +290,7 @@ export function App() {
                 <MessageCircle size={20} />
               </a>
               <a
-                href="https://github.com/waynesutton/commitquest"
+                href="https://github.com/waynesutton/commitrank"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-[#222222] transition-colors">
