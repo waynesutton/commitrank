@@ -1,0 +1,825 @@
+-
+
+# https:/commitrank.ai/llms.txt
+
+[![Commit Rank Logo](https://commitrank.ai/apple-touch-icon-180x180.png)**CommitRank.AI**](https://commitrank.ai/)
+
+Rank the best developers on GitHub with AI. Just paste the GitHub profile URL below.
+
+[Open Source project built with](https://github.com/waynesutton/commitrank) [Convex.dev](https://convex.link/C9EptlP) \\| [OpenAI](https://openai.com/) \\| [TanStack](https://tanstack.com/) \\| [Bolt.new](https://bolt.new/)
+
+Start Ranking
+
+## Ranking Categories
+
+Scroll to top
+
+### Overload (4)
+
+100,000+ commits
+
+@mitchellh@briansmith@torvalds@erquhart
+
+### Hacker (1)
+
+10,000+ commits
+
+@ianmacartney
+
+### Wizard (2)
+
+5,000+ commits
+
+@tigerabrodi@thomasballinger
+
+### Samurai (9)
+
+1,000+ commits
+
+@VaiTon@rjdellecese@d4rky-pl@webdevcody@nadeesha@elizabethsiegle@goffrie@mikecann@ldanilek
+
+### Noob (9)
+
+10-999 commits
+
+@ethantompkins@heil@pathakmukul@hamzasaleem2@AlbertoGalvan001@sshader@RayFernando1337@dev-xo@jamwt
+
+### Explorer (1)
+
+Less than 10 commits
+
+@jogger
+
+### Convex (11)
+
+Uses Convex in their repos
+
+@rjdellecese@webdevcody@hamzasaleem2@erquhart@thomasballinger@mikecann@sshader@ldanilek@RayFernando1337@jamwt@ianmacartney
+
+![VaiTon](https://avatars.githubusercontent.com/u/12072630?v=4)
+
+## VaiTon
+
+@VaiTon
+
+M.Sc. Computer Engineering Student @ University of Bologna
+
+2,766 Total Commits
+
+Samurai
+
+### The Tale of a Samurai
+
+Legend speaks of VaiTon, the Code Samurai, whose 2,766 commits are like cherry blossoms in the wind - beautiful, purposeful, and ever-growing. Through countless pull requests and merge conflicts, they have maintained their honor, following the way of Clean Code with unwavering dedication.
+
+Bologna, Italy
+
+[GitHub Profile](https://github.com/VaiTon)
+
+Share on X
+
+### Chat with the commits
+
+![Mitchell Hashimoto](https://avatars.githubusercontent.com/u/1299?v=4)
+
+## Mitchell Hashimoto
+
+@mitchellh
+
+647,300 Total Commits
+
+Overload
+
+### The Tale of a Overload
+
+Legends speak of Mitchell Hashimoto, the Overload whose keyboard never cools. With 647,300 commits, they've transcended normal development patterns, becoming one with the code itself. Their repository is a testament to their mastery, a beacon of light in the darkness of unsolved problems.
+
+Los Angeles, CA
+
+[https://mitchellh.com](https://mitchellh.com/)
+
+[@mitchellh](https://twitter.com/mitchellh)
+
+[GitHub Profile](https://github.com/mitchellh)
+
+Share on X
+
+### Chat with the commits
+
+how have u been coding so much
+
+The developer has been coding consistently over a significant period of time to achieve their impressive total of 647,300 commits. This level of commitment and dedication reflects their strong work ethic and passion for programming. It's clear they have invested substantial time and effort into their coding projects to accumulate such a high number of commits.
+
+they gotta be a huge fucking legend
+
+Absolutely! To reach over 647,300 commits, the developer's commitment and skills undoubtedly make them a legend in the coding community. It takes incredible perseverance and expertise to maintain such a high level of productivity. Their hard work and dedication have certainly set them apart as a seasoned developer with a wealth of experience.
+
+![Tiger Abrodi](https://avatars.githubusercontent.com/u/49603590?v=4)
+
+## Tiger Abrodi
+
+@tigerabrodi
+
+I love Anime, Tech and Gym.
+
+5,639 Total Commits
+
+Wizard
+
+### The Tale of a Wizard
+
+Tiger Abrodi, the Code Wizard, has woven 5,639 commits into a tapestry of technical excellence. Their mastery of the digital arts is evident in every line of code, each commit a step in their journey to programming enlightenment.
+
+Germany
+
+[https://tigerabrodi.blog/](https://tigerabrodi.blog/)
+
+[@TAbrodi](https://twitter.com/TAbrodi)
+
+[GitHub Profile](https://github.com/tigerabrodi)
+
+Share on X
+
+### Chat with the commits
+
+what's a coding wizard?
+
+Being a coding wizard is indeed impressive! In the realm of developer rankings based on commit count, a coding wizard is someone who has made 5,000 or more commits. It showcases a high level of dedication, expertise, and experience in their coding journey. Wizards are often seen as proficient developers with a wealth of knowledge and a strong commitment to their craft. It's a significant achievement that highlights their hard work and passion for coding.
+
+I thought Tiger used Convex?
+
+While the developer you're referring to doesn't currently use Convex based on the information provided, it's always possible for developers to explore and adopt new tools and technologies as they progress in their coding journey. Convex is a tool that helps analyze and improve Git commits, so if the developer decides to use Convex in the future, it could further enhance their commit history and coding practices. It's great to see developers expanding their toolset to improve their workflow and code quality.
+
+![Ethan Tompkins](https://avatars.githubusercontent.com/u/56762692?v=4)
+
+## Ethan Tompkins
+
+@ethantompkins
+
+Software Engineer
+
+346 Total Commits
+
+Noob
+
+### The Tale of a Noob
+
+Every journey begins with a single commit, and Ethan Tompkins has already taken 346 steps on their path to coding mastery. Like a sprout reaching for the sun, their potential grows with each new line of code, each commit a leaf in their growing garden of development.
+
+[https://ethantompkins.com/](https://ethantompkins.com/)
+
+[GitHub Profile](https://github.com/ethantompkins)
+
+Share on X
+
+### Chat with the commits
+
+![RJ Dellecese](https://avatars.githubusercontent.com/u/13547385?v=4)
+
+## RJ Dellecese
+
+@rjdellecese
+
+Quack.
+
+1,269 Total Commits
+
+Samurai
+
+Convex Developer
+
+### The Tale of a Samurai
+
+In the digital dojo of RJ Dellecese, each commit is a stroke of the keyboard-katana. With 1,269 precise cuts through the codebase, this noble developer has earned their place among the Samurai of Silicon Valley. Their git log tells tales of epic bug battles and feature quests that will be remembered in the scrolls of GitHub for generations to come.
+
+Cambridge, MA
+
+[GitHub Profile](https://github.com/rjdellecese)
+
+Share on X
+
+### Chat with the commits
+
+Tell me something about this user’s commits
+
+This developer has a total of 1,269 commits, which is an impressive number indicating a significant level of activity and dedication to their projects. The consistent number of commits suggests a strong commitment to their work and a regular habit of making contributions to their repositories.
+
+It would be interesting to analyze the distribution of these commits across different projects or repositories to get more insights into their coding interests and areas of focus. Additionally, looking at the frequency of commits over time could reveal their work patterns and project timelines.
+
+How does RJ use Convex?
+
+Based on the information provided, the developer uses Convex in their projects. Convex is a popular optimization library in Clojure that provides tools for solving convex optimization problems. By incorporating Convex into their projects, the developer may be focusing on mathematical modeling, machine learning, or other areas where optimization is a key component.
+
+Using Convex can indicate that the developer is working on complex problems that involve optimizing certain parameters or functions. It shows a dedication to implementing efficient and mathematically sound algorithms in their projects.
+
+![Michał Matyas](https://avatars.githubusercontent.com/u/284395?v=4)
+
+## Michał Matyas
+
+@d4rky-pl
+
+1,331 Total Commits
+
+Samurai
+
+### The Tale of a Samurai
+
+Legend speaks of Michał Matyas, the Code Samurai, whose 1,331 commits are like cherry blossoms in the wind - beautiful, purposeful, and ever-growing. Through countless pull requests and merge conflicts, they have maintained their honor, following the way of Clean Code with unwavering dedication.
+
+Kraków
+
+[http://nerdblog.pl](http://nerdblog.pl/)
+
+[GitHub Profile](https://github.com/d4rky-pl)
+
+Share on X
+
+### Chat with the commits
+
+![Thomas Heil](https://avatars.githubusercontent.com/u/3112506?v=4)
+
+## Thomas Heil
+
+@heil
+
+Linux and DevOPS
+
+42 Total Commits
+
+Noob
+
+### The Tale of a Noob
+
+Every journey begins with a single commit, and Thomas Heil has already taken 42 steps on their path to coding mastery. Like a sprout reaching for the sun, their potential grows with each new line of code, each commit a leaf in their growing garden of development.
+
+Germany
+
+[https://github.com/heil](https://github.com/heil)
+
+[GitHub Profile](https://github.com/heil)
+
+Share on X
+
+### Chat with the commits
+
+![Jogger Team](https://avatars.githubusercontent.com/u/284376?v=4)
+
+## Jogger Team
+
+@jogger
+
+0 Total Commits
+
+Explorer
+
+### The Tale of a Explorer
+
+Standing at the threshold of the coding universe, Jogger Team takes their first brave steps with 0 commits. Like an explorer charting unknown territories, they venture forth into the vast expanse of development, each commit a new discovery in their programming journey.
+
+Poland
+
+[http://jogger.pl](http://jogger.pl/)
+
+[GitHub Profile](https://github.com/jogger)
+
+Share on X
+
+### Chat with the commits
+
+![Brian Smith](https://avatars.githubusercontent.com/u/16816?v=4)
+
+## Brian Smith
+
+@briansmith
+
+152,023 Total Commits
+
+Overload
+
+### The Tale of a Overload
+
+In the digital realm, Brian Smith stands as a legendary Overload, their 152,023 commits crackling with raw coding energy. Like a power plant of pure innovation, they've generated enough code to light up entire tech ecosystems. Their GitHub history reads like a saga of digital transformation, each commit a bolt of brilliance in the vast storm of development.
+
+[https://briansmith.org/](https://briansmith.org/)
+
+[@BRIAN\\_\\_\\_\\_\\\_](https://twitter.com/BRIAN_____)
+
+[GitHub Profile](https://github.com/briansmith)
+
+Share on X
+
+### Chat with the commits
+
+![Web Dev Cody](https://avatars.githubusercontent.com/u/123222405?v=4)
+
+## Web Dev Cody
+
+@webdevcody
+
+2,399 Total Commits
+
+Samurai
+
+Convex Developer
+
+### The Tale of a Samurai
+
+Legend speaks of Web Dev Cody, the Code Samurai, whose 2,399 commits are like cherry blossoms in the wind - beautiful, purposeful, and ever-growing. Through countless pull requests and merge conflicts, they have maintained their honor, following the way of Clean Code with unwavering dedication.
+
+[webdevcody.com](https://webdevcody.com/)
+
+[@webdevcody](https://twitter.com/webdevcody)
+
+[GitHub Profile](https://github.com/webdevcody)
+
+Share on X
+
+### Chat with the commits
+
+What makes Code a Samurai?
+
+In the realm of GitHub commit rankings, a developer attains the prestigious title of Samurai once they surpass 1,000 commits. This signifies a significant level of commitment, dedication, and expertise in their coding journey. It showcases their consistency, hard work, and passion for software development. Just like the legendary Samurai warriors of old, these developers exhibit discipline, skill, and a relentless pursuit of mastery in their craft. It's a remarkable achievement that highlights their proficiency and experience in the world of coding.
+
+How does Web Dev Cody use Convex?
+
+Web Dev Cody's utilization of Convex in their projects indicates a penchant for functional programming in the Clojure programming language. Convex is a library in Clojure that simplifies the handling of nested data structures and is particularly useful in scenarios where working with complex data transformations and querying is common. By leveraging Convex, Cody may be aiming to write concise and expressive code that effectively deals with data manipulation tasks. This choice demonstrates Cody's interest in leveraging functional programming paradigms and tools to enhance their software development process.
+
+![Linus Torvalds](https://avatars.githubusercontent.com/u/1024025?v=4)
+
+## Linus Torvalds
+
+@torvalds
+
+370,940,395 Total Commits
+
+Overload
+
+### The Tale of a Overload
+
+Legends speak of Linus Torvalds, the Overload whose keyboard never cools. With 370,940,395 commits, they've transcended normal development patterns, becoming one with the code itself. Their repository is a testament to their mastery, a beacon of light in the darkness of unsolved problems.
+
+Portland, OR
+
+[GitHub Profile](https://github.com/torvalds)
+
+Share on X
+
+### Chat with the commits
+
+![Mukul Pathak](https://avatars.githubusercontent.com/u/20917345?v=4)
+
+## Mukul Pathak
+
+@pathakmukul
+
+I like making GenAI apps. Thanks for being a part of my journey to achieve consciousness in LLMs. :)
+
+195 Total Commits
+
+Noob
+
+### The Tale of a Noob
+
+Every journey begins with a single commit, and Mukul Pathak has already taken 195 steps on their path to coding mastery. Like a sprout reaching for the sun, their potential grows with each new line of code, each commit a leaf in their growing garden of development.
+
+San Francisco
+
+[mukulpathak.com](https://mukulpathak.com/)
+
+[GitHub Profile](https://github.com/pathakmukul)
+
+Share on X
+
+### Chat with the commits
+
+![Nadeesha Cabral](https://avatars.githubusercontent.com/u/2942312?v=4)
+
+## Nadeesha Cabral
+
+@nadeesha
+
+2,124 Total Commits
+
+Samurai
+
+### The Tale of a Samurai
+
+Legend speaks of Nadeesha Cabral, the Code Samurai, whose 2,124 commits are like cherry blossoms in the wind - beautiful, purposeful, and ever-growing. Through countless pull requests and merge conflicts, they have maintained their honor, following the way of Clean Code with unwavering dedication.
+
+Melbourne, Australia.
+
+[nadeeshacabral.com](https://nadeeshacabral.com/)
+
+[@segfaulte](https://twitter.com/segfaulte)
+
+[GitHub Profile](https://github.com/nadeesha)
+
+Share on X
+
+### Chat with the commits
+
+![Lizzie Siegle](https://avatars.githubusercontent.com/u/8932430?v=4)
+
+## Lizzie Siegle
+
+@elizabethsiegle
+
+developer advocate @ cloudflare. ex-twilio, bryn mawr cs/🎾/🏓.
+
+2,100 Total Commits
+
+Samurai
+
+### The Tale of a Samurai
+
+In the digital dojo of Lizzie Siegle, each commit is a stroke of the keyboard-katana. With 2,100 precise cuts through the codebase, this noble developer has earned their place among the Samurai of Silicon Valley. Their git log tells tales of epic bug battles and feature quests that will be remembered in the scrolls of GitHub for generations to come.
+
+on shoulders of (sf) giants
+
+[https://lizziesiegle.pages.dev/](https://lizziesiegle.pages.dev/)
+
+[@lizziepika](https://twitter.com/lizziepika)
+
+[GitHub Profile](https://github.com/elizabethsiegle)
+
+Share on X
+
+### Chat with the commits
+
+![hamzasaleem2](https://avatars.githubusercontent.com/u/133140745?v=4)
+
+## hamzasaleem2
+
+@hamzasaleem2
+
+129 Total Commits
+
+Noob
+
+Convex Developer
+
+### The Tale of a Noob
+
+Every journey begins with a single commit, and hamzasaleem2 has already taken 129 steps on their path to coding mastery. Like a sprout reaching for the sun, their potential grows with each new line of code, each commit a leaf in their growing garden of development.
+
+[GitHub Profile](https://github.com/hamzasaleem2)
+
+Share on X
+
+### Chat with the commits
+
+you a noob, wdy?
+
+Hey there! Yes, I'm currently analyzing a developer's profile who falls under the \"Noob\" category with 129 total commits. How can I assist you today?
+
+you a noob, wyd?
+
+As an AI assistant, I'm here to provide insights and analysis based on the developer's profile I'm currently reviewing. Feel free to ask me any questions you have about the developer's commit history, coding journey, technical expertise, or anything else you're curious about!
+
+lo
+
+If you have any more questions or need assistance in the future, feel free to ask. Have a great day!
+
+![Shawn Erquhart](https://avatars.githubusercontent.com/u/2112202?v=4)
+
+## Shawn Erquhart
+
+@erquhart
+
+Building something new.
+
+1,227,450 Total Commits
+
+Overload
+
+Convex Developer
+
+### The Tale of a Overload
+
+Legends speak of Shawn Erquhart, the Overload whose keyboard never cools. With 1,227,450 commits, they've transcended normal development patterns, becoming one with the code itself. Their repository is a testament to their mastery, a beacon of light in the darkness of unsolved problems.
+
+USA
+
+[GitHub Profile](https://github.com/erquhart)
+
+Share on X
+
+### Chat with the commits
+
+what makes Shawn a hacker?
+
+In the context of GitHub, being classified as a \"hacker\" typically refers to a developer who is exceptionally prolific and active in terms of committing code to projects. In Shawn's case, with over 1,227,450 total commits and being categorized as an \"Overload\" with 100,000+ commits, it showcases a remarkable level of dedication, expertise, and involvement in their coding endeavors. This commitment and high volume of commits demonstrate their deep engagement with coding and a strong proficiency in developing projects.
+
+which project has the most commits
+
+As an AI assistant, I don't have real-time access to specific project details on GitHub, including the exact project with the most commits by Shawn. However, with Shawn's impressive total of 1,227,450 commits across their various projects, it's likely that they have made significant contributions to multiple repositories. This extensive commit history reflects their continuous involvement and dedication to their coding efforts across various projects utilizing Convex and beyond.
+
+![Geoffry Song](https://avatars.githubusercontent.com/u/1240398?v=4)
+
+## Geoffry Song
+
+@goffrie
+
+🌠🎀
+
+4,908 Total Commits
+
+Samurai
+
+### The Tale of a Samurai
+
+In the digital dojo of Geoffry Song, each commit is a stroke of the keyboard-katana. With 4,908 precise cuts through the codebase, this noble developer has earned their place among the Samurai of Silicon Valley. Their git log tells tales of epic bug battles and feature quests that will be remembered in the scrolls of GitHub for generations to come.
+
+San Francisco
+
+[GitHub Profile](https://github.com/goffrie)
+
+Share on X
+
+### Chat with the commits
+
+whyi is Geoffry a Samurai?
+
+It is not clear why Geoffry is a samurai without more context or information. However, it is possible that Geoffry has studied and trained in the ways of the samurai, adopting their martial arts techniques and code of honor. He may have chosen to become a samurai as a personal or cultural choice, or as a means of protection or service in a specific setting or time period.
+
+![Alberto Galvan](https://avatars.githubusercontent.com/u/54903554?v=4)
+
+## Alberto Galvan
+
+@AlbertoGalvan001
+
+113 Total Commits
+
+Noob
+
+### The Tale of a Noob
+
+In the vast forest of code, Alberto Galvan is a promising sapling, their 113 commits marking the beginning of what promises to be a mighty development journey. Watch as they grow, one commit at a time, into a towering presence in the tech ecosystem.
+
+[GitHub Profile](https://github.com/AlbertoGalvan001)
+
+Share on X
+
+### Chat with the commits
+
+hi Alberto?
+
+Hello! I'm not Alberto, I'm an AI assistant. How can I help you today?
+
+what is his stack?
+
+I'm sorry, I don't have information about Alberto's personal details, including his stack. Is there something else I can assist you with?
+
+what details do you have?
+
+I have information on Alberto's GitHub commit history. He has a total of 113 commits and is classified as a \"Noob\" with 10-999 commits. If you have any questions about his commit patterns or coding journey, feel free to ask!
+
+![Tom Ballinger](https://avatars.githubusercontent.com/u/458879?v=4)
+
+## Tom Ballinger
+
+@thomasballinger
+
+Writing more TypeScript than Rust at Convex
+
+7,212 Total Commits
+
+Wizard
+
+Convex Developer
+
+### The Tale of a Wizard
+
+Tom Ballinger, the Code Wizard, has woven 7,212 commits into a tapestry of technical excellence. Their mastery of the digital arts is evident in every line of code, each commit a step in their journey to programming enlightenment.
+
+SF
+
+[http://ballingt.com/](http://ballingt.com/)
+
+[@ballingt](https://twitter.com/ballingt)
+
+[GitHub Profile](https://github.com/thomasballinger)
+
+Share on X
+
+### Chat with the commits
+
+Why is Tom a wizard?
+
+There are a few possible reasons why Tom might be a wizard:
+
+1\\. He was born with magical abilities: In some fictional stories, wizards are born with their powers and inherit them from their family members. Tom may have been born into a family of wizards and discovered his magical abilities at a young age.
+
+2\\. He studied and trained to become a wizard: In other stories, wizards must study and train to learn how to harness their magical powers. Tom might have dedicated years of his life to studying magic and mastering spells and potions.
+
+3\\. He made a deal with a mystical being: In some myths and folklore, individuals can become wizards by making deals with mystical beings or spirits. Tom may have traded something valuable in exchange for magical powers.
+
+Ultimately, the reason why Tom is a wizard depends on the specific story or myth in which he appears.
+
+![Mike Cann](https://avatars.githubusercontent.com/u/215033?v=4)
+
+## Mike Cann
+
+@mikecann
+
+CTO at Gangbusters.io, General all-round Tinkerer
+
+1,712 Total Commits
+
+Samurai
+
+Convex Developer
+
+### The Tale of a Samurai
+
+In the digital dojo of Mike Cann, each commit is a stroke of the keyboard-katana. With 1,712 precise cuts through the codebase, this noble developer has earned their place among the Samurai of Silicon Valley. Their git log tells tales of epic bug battles and feature quests that will be remembered in the scrolls of GitHub for generations to come.
+
+Perth
+
+[http://www.mikecann.co.uk](http://www.mikecann.co.uk/)
+
+[@mikeysee](https://twitter.com/mikeysee)
+
+[GitHub Profile](https://github.com/mikecann)
+
+Share on X
+
+### Chat with the commits
+
+chat?
+
+![Sarah Shader](https://avatars.githubusercontent.com/u/15620796?v=4)
+
+## Sarah Shader
+
+@sshader
+
+755 Total Commits
+
+Noob
+
+Convex Developer
+
+### The Tale of a Noob
+
+In the vast forest of code, Sarah Shader is a promising sapling, their 755 commits marking the beginning of what promises to be a mighty development journey. Watch as they grow, one commit at a time, into a towering presence in the tech ecosystem.
+
+NYC
+
+[@sarah\\\_shader](https://twitter.com/sarah_shader)
+
+[GitHub Profile](https://github.com/sshader)
+
+Share on X
+
+### Chat with the commits
+
+![Lee Danilek](https://avatars.githubusercontent.com/u/4319355?v=4)
+
+## Lee Danilek
+
+@ldanilek
+
+1,409 Total Commits
+
+Samurai
+
+Convex Developer
+
+### The Tale of a Samurai
+
+Legend speaks of Lee Danilek, the Code Samurai, whose 1,409 commits are like cherry blossoms in the wind - beautiful, purposeful, and ever-growing. Through countless pull requests and merge conflicts, they have maintained their honor, following the way of Clean Code with unwavering dedication.
+
+Yale University, New Haven, CT
+
+[leedanilek.com](https://leedanilek.com/)
+
+[@ldanilek](https://twitter.com/ldanilek)
+
+[GitHub Profile](https://github.com/ldanilek)
+
+Share on X
+
+### Chat with the commits
+
+bug
+
+![Ray Fernando](https://avatars.githubusercontent.com/u/104695450?v=4)
+
+## Ray Fernando
+
+@RayFernando1337
+
+12-yr ex-apple engineer • ai streams on x/youtube • latest app https://raytranscribes.com
+
+145 Total Commits
+
+Noob
+
+Convex Developer
+
+### The Tale of a Noob
+
+Every journey begins with a single commit, and Ray Fernando has already taken 145 steps on their path to coding mastery. Like a sprout reaching for the sun, their potential grows with each new line of code, each commit a leaf in their growing garden of development.
+
+Los Altos, CA
+
+[https://rayfernando.ai](https://rayfernando.ai/)
+
+[@RayFernando1337](https://twitter.com/RayFernando1337)
+
+[GitHub Profile](https://github.com/RayFernando1337)
+
+Share on X
+
+### Chat with the commits
+
+![Daniel Kanem](https://avatars.githubusercontent.com/u/82425492?v=4)
+
+## Daniel Kanem
+
+@dev-xo
+
+Improving your Developer Experience.
+
+392 Total Commits
+
+Noob
+
+### The Tale of a Noob
+
+In the vast forest of code, Daniel Kanem is a promising sapling, their 392 commits marking the beginning of what promises to be a mighty development journey. Watch as they grow, one commit at a time, into a towering presence in the tech ecosystem.
+
+Madrid, Spain
+
+[bento.me/DanielKanem](https://bento.me/DanielKanem)
+
+[@DanielKanem](https://twitter.com/DanielKanem)
+
+[GitHub Profile](https://github.com/dev-xo)
+
+Share on X
+
+### Chat with the commits
+
+Why is Daniel a noob?
+
+Daniel is classified as a \"Noob\" based on the number of commits he has made on GitHub. The \"Noob\" category typically includes developers with 10-999 commits. This classification is a general guideline and doesn't necessarily reflect Daniel's skills or experience level outside of his GitHub commit history. It merely indicates his level of activity and contribution to repositories on GitHub.
+
+![Jamie Turner](https://avatars.githubusercontent.com/u/61509?v=4)
+
+## Jamie Turner
+
+@jamwt
+
+Co-founder of @get-convex
+
+424 Total Commits
+
+Noob
+
+Convex Developer
+
+### The Tale of a Noob
+
+In the vast forest of code, Jamie Turner is a promising sapling, their 424 commits marking the beginning of what promises to be a mighty development journey. Watch as they grow, one commit at a time, into a towering presence in the tech ecosystem.
+
+Seattle, WA
+
+[http://jamwt.com](http://jamwt.com/)
+
+[@jamwt](https://twitter.com/jamwt)
+
+[GitHub Profile](https://github.com/jamwt)
+
+Share on X
+
+### Chat with the commits
+
+![Ian Macartney](https://avatars.githubusercontent.com/u/366683?v=4)
+
+## Ian Macartney
+
+@ianmacartney
+
+10,418 Total Commits
+
+Hacker
+
+Convex Developer
+
+### The Tale of a Hacker
+
+With fingers dancing across the keyboard, Ian Macartney has carved their name into the bedrock of GitHub with 10,418 precise commits. This Hacker's code flows like poetry, each pull request a verse in their epic saga of development.
+
+San Francisco
+
+[ianmacartney.com](https://ianmacartney.com/)
+
+[@ianmacartney](https://twitter.com/ianmacartney)
+
+[GitHub Profile](https://github.com/ianmacartney)
+
+Share on X
+
+### Chat with the commits
