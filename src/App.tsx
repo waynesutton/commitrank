@@ -208,11 +208,19 @@ export function App() {
           </a>
           {" | "}
           <a
+            href="https://openai.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-grey-500 hover:underline flex items-center gap-1">
+            OpenAI
+          </a>
+          {" | "}
+          <a
             href="https://tanstack.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-grey-500 hover:underline">
-            TanStack.com
+            TanStack
           </a>
           {" | "}
           <a
