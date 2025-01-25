@@ -190,14 +190,13 @@ export function App() {
         </div>
 
         <p className="text-xl text-center text-gray-600 mb-2">
-          Chat with any GitHub public profile and see their ranking. Just paste the GitHub profile
-          URL below.
+          Rank the best developers on GitHub with AI. Just paste the GitHub profile URL below.
         </p>
 
         <div
           className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8
         ">
-          <a href="https://github.com/waynesutton/commitrank">Open Source project</a>built with
+          <a href="https://github.com/waynesutton/commitrank">Open Source project built with</a>
           <a
             href="https://convex.link/C9EptlP"
             target="_blank"
@@ -256,7 +255,12 @@ export function App() {
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="w-full lg:w-72 flex-shrink-0">
             <div className="sticky top-4 bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-bold mb-6">Ranking Categories</h2>
+              <h2 className="text-xl font-bold mb-2">Ranking Categories</h2>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="text-xs text-gray-500 hover:text-gray-700 mb-6">
+                Scroll to top
+              </button>
 
               <div className="space-y-6">
                 {categories.map((category) => (

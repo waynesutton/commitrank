@@ -1,6 +1,6 @@
 # CommitRank.AI 🏆
 
-CommitRank.AI is a modern web application that analyzes GitHub profiles, ranks developers based on their commit history, and provides an AI-powered chat interface to discuss their contributions.
+CommitRank.AI is a tool to help you rank the best developers on GitHub with AI.
 
 ## Features
 
