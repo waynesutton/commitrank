@@ -12,6 +12,8 @@ import {
   Twitter,
   Github,
   MessageCircle,
+  Notebook,
+  Cloud,
 } from "lucide-react";
 import { GitHubProfile } from "./types";
 import ProfileCard from "./components/ProfileCard";
@@ -321,6 +323,13 @@ export function App() {
             </p>
             <div className="flex justify-center gap-6">
               <a
+                href="https://bsky.app/profile/convex.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-[#222222] transition-colors">
+                <Cloud size={20} />
+              </a>
+              <a
                 href="https://twitter.com/convex_dev"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -340,6 +349,13 @@ export function App() {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-[#222222] transition-colors">
                 <Github size={20} />
+              </a>
+              <a
+                href="https://commitrank.ai/llms.txt  "
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-[#222222] transition-colors">
+                <Notebook size={20} />
               </a>
             </div>
           </div>
