@@ -253,8 +253,8 @@ export function App() {
           {error && <p className="text-red-500 text-center mt-2">{error}</p>}
         </form>
 
-        <div className="flex gap-8">
-          <div className="w-72 flex-shrink-0">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="w-full lg:w-72 flex-shrink-0">
             <div className="sticky top-4 bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-bold mb-6">Ranking Categories</h2>
 
@@ -289,7 +289,7 @@ export function App() {
           </div>
 
           <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
               {visibleProfiles.map((data: Profile) => (
                 <div key={data._id} ref={(el) => (profileRefs.current[data.login] = el)}>
                   <ProfileCard profile={data} commits={data.commits} usesConvex={data.usesConvex} />
@@ -309,7 +309,7 @@ export function App() {
           </div>
         </div>
 
-        <footer className="mt-16">
+        <footer className="mt-16 pb-8">
           <hr className="border-gray-200 mb-6" />
           <div className="text-center text-sm text-gray-500">
             <p className="mb-4">
