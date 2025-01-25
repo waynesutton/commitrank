@@ -365,6 +365,10 @@ export function App() {
                 <Notebook size={20} />
               </a>
             </div>
+            <p className="text-xs text-gray-500 mt-4">
+              Disclaimer: This site is not affiliated with or endorsed by GitHub. All trademarks
+              belong to their respective owners.
+            </p>
           </div>
         </footer>
       </div>
