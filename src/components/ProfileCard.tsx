@@ -150,7 +150,7 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
           <div className="flex items-center gap-2">
             <Globe size={16} />
             <a
-              href={`https://${profile.blog}`}
+              href={profile.blog.startsWith("http") ? profile.blog : `https://${profile.blog}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline">
