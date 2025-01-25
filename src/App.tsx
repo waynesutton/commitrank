@@ -14,6 +14,8 @@ import {
   MessageCircle,
   Notebook,
   Cloud,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { GitHubProfile } from "./types";
 import ProfileCard from "./components/ProfileCard";
@@ -180,19 +182,13 @@ export function App() {
       <div className="max-w-7xl mx-auto pt-10">
         <div className="flex items-center justify-center gap-3 mb-2">
           <a href="https://commitrank.ai" className="flex items-center justify-center">
-            <img
-              src="/apple-touch-icon-180x180.png"
-              alt="Commit Rank Logo"
-              width={48}
-              height={48}
-            />
-
-            <h1 className="text-4xl font-bold text-center">CommitRank.AI</h1>
+            <h1 className="text-4xl font-bold text-center">GitHub Commits Ranking</h1>
           </a>
         </div>
 
         <p className="text-xl text-center text-gray-600 mb-2">
-          Rank the best developers on GitHub with AI. Just paste the GitHub profile URL below.
+          CommitRank.AI ranks the best developers on GitHub with AI. Just paste the GitHub profile
+          URL below.
         </p>
 
         <div
@@ -258,11 +254,22 @@ export function App() {
           <div className="w-full lg:w-72 flex-shrink-0">
             <div className="sticky top-4 bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-bold mb-2">Ranking Categories</h2>
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="text-xs text-gray-500 hover:text-gray-700 mb-6">
-                Scroll to top
-              </button>
+              <div className="flex gap-4 mb-6">
+                <button
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1">
+                  <ChevronUp size={16} />
+                  Scroll to top
+                </button>
+                <button
+                  onClick={() =>
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })
+                  }
+                  className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1">
+                  <ChevronDown size={16} />
+                  Scroll to bottom
+                </button>
+              </div>
 
               <div className="space-y-6">
                 {categories.map((category) => (

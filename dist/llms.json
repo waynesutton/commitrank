@@ -1,0 +1,210 @@
+{
+  "title": "CommitRank.AI",
+  "description": "Rank the best developers on GitHub with AI",
+  "categories": {
+    "overload": {
+      "emoji": "🌟",
+      "name": "Overload",
+      "count": 4,
+      "threshold": "100,000+ commits",
+      "users": [
+        {
+          "username": "mitchellh",
+          "github_url": "https://github.com/mitchellh"
+        },
+        {
+          "username": "briansmith",
+          "github_url": "https://github.com/briansmith"
+        },
+        {
+          "username": "torvalds",
+          "github_url": "https://github.com/torvalds"
+        },
+        {
+          "username": "erquhart",
+          "github_url": "https://github.com/erquhart"
+        }
+      ]
+    },
+    "hacker": {
+      "emoji": "💻",
+      "name": "Hacker",
+      "count": 1,
+      "threshold": "10,000+ commits",
+      "users": [
+        {
+          "username": "ianmacartney",
+          "github_url": "https://github.com/ianmacartney"
+        }
+      ]
+    },
+    "wizard": {
+      "emoji": "🔮",
+      "name": "Wizard",
+      "count": 2,
+      "threshold": "5,000+ commits",
+      "users": [
+        {
+          "username": "tigerabrodi",
+          "github_url": "https://github.com/tigerabrodi"
+        },
+        {
+          "username": "thomasballinger",
+          "github_url": "https://github.com/thomasballinger"
+        }
+      ]
+    },
+    "samurai": {
+      "emoji": "⚔️",
+      "name": "Samurai",
+      "count": 9,
+      "threshold": "1,000+ commits",
+      "users": [
+        {
+          "username": "VaiTon",
+          "github_url": "https://github.com/VaiTon"
+        },
+        {
+          "username": "rjdellecese",
+          "github_url": "https://github.com/rjdellecese"
+        },
+        {
+          "username": "d4rky-pl",
+          "github_url": "https://github.com/d4rky-pl"
+        },
+        {
+          "username": "webdevcody",
+          "github_url": "https://github.com/webdevcody"
+        },
+        {
+          "username": "nadeesha",
+          "github_url": "https://github.com/nadeesha"
+        },
+        {
+          "username": "elizabethsiegle",
+          "github_url": "https://github.com/elizabethsiegle"
+        },
+        {
+          "username": "goffrie",
+          "github_url": "https://github.com/goffrie"
+        },
+        {
+          "username": "mikecann",
+          "github_url": "https://github.com/mikecann"
+        },
+        {
+          "username": "ldanilek",
+          "github_url": "https://github.com/ldanilek"
+        }
+      ]
+    },
+    "noob": {
+      "emoji": "🌱",
+      "name": "Noob",
+      "count": 9,
+      "threshold": "10-999 commits",
+      "users": [
+        {
+          "username": "ethantompkins",
+          "github_url": "https://github.com/ethantompkins"
+        },
+        {
+          "username": "heil",
+          "github_url": "https://github.com/heil"
+        },
+        {
+          "username": "pathakmukul",
+          "github_url": "https://github.com/pathakmukul"
+        },
+        {
+          "username": "hamzasaleem2",
+          "github_url": "https://github.com/hamzasaleem2"
+        },
+        {
+          "username": "AlbertoGalvan001",
+          "github_url": "https://github.com/AlbertoGalvan001"
+        },
+        {
+          "username": "sshader",
+          "github_url": "https://github.com/sshader"
+        },
+        {
+          "username": "RayFernando1337",
+          "github_url": "https://github.com/RayFernando1337"
+        },
+        {
+          "username": "dev-xo",
+          "github_url": "https://github.com/dev-xo"
+        },
+        {
+          "username": "jamwt",
+          "github_url": "https://github.com/jamwt"
+        }
+      ]
+    },
+    "explorer": {
+      "emoji": "🧭",
+      "name": "Explorer",
+      "count": 1,
+      "threshold": "Less than 10 commits",
+      "users": [
+        {
+          "username": "jogger",
+          "github_url": "https://github.com/jogger"
+        }
+      ]
+    },
+    "convex": {
+      "emoji": "⚡",
+      "name": "Convex Developer",
+      "count": 11,
+      "threshold": "Uses Convex in their repos",
+      "users": [
+        {
+          "username": "rjdellecese",
+          "github_url": "https://github.com/rjdellecese"
+        },
+        {
+          "username": "webdevcody",
+          "github_url": "https://github.com/webdevcody"
+        },
+        {
+          "username": "hamzasaleem2",
+          "github_url": "https://github.com/hamzasaleem2"
+        },
+        {
+          "username": "erquhart",
+          "github_url": "https://github.com/erquhart"
+        },
+        {
+          "username": "thomasballinger",
+          "github_url": "https://github.com/thomasballinger"
+        },
+        {
+          "username": "mikecann",
+          "github_url": "https://github.com/mikecann"
+        },
+        {
+          "username": "sshader",
+          "github_url": "https://github.com/sshader"
+        },
+        {
+          "username": "ldanilek",
+          "github_url": "https://github.com/ldanilek"
+        },
+        {
+          "username": "RayFernando1337",
+          "github_url": "https://github.com/RayFernando1337"
+        },
+        {
+          "username": "jamwt",
+          "github_url": "https://github.com/jamwt"
+        },
+        {
+          "username": "ianmacartney",
+          "github_url": "https://github.com/ianmacartney"
+        }
+      ]
+    }
+  }
+}
