@@ -54,7 +54,7 @@ export default function ChatBox({ profile, commits, usesConvex }: ChatBoxProps) 
       <div className="p-4 bg-gray-50 border-b">
         <div className="flex items-center gap-2 text-gray-700">
           <Bot size={20} />
-          <h3 className="font-semibold">Chat with the commits</h3>
+          <h3 className="font-semibold">Code Questions?</h3>
         </div>
       </div>
 
