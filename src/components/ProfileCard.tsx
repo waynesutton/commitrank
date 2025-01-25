@@ -29,7 +29,8 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
 
   const shareOnTwitter = () => {
     const rankLabel = getRankInfo().label;
-    const text = `🎮 Just discovered ${profile.name} is a ${rankLabel} on Commit Rank with ${commits.toLocaleString()} commits! ${usesConvex ? "⚡ Convex Developer!" : ""} Check out their journey at https://commitrank.ai#${profile.login}`;
+    const url = `${window.location.origin}#${profile.login}`;
+    const text = `🎮 Just discovered ${profile.name} is a ${rankLabel} on Commit Rank with ${commits.toLocaleString()} commits! ${usesConvex ? "⚡ Convex Developer!" : ""} Check out their journey at ${url}`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
   };
 
