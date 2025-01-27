@@ -16,7 +16,6 @@ import {
   Database,
 } from "lucide-react";
 import { GitHubProfile } from "../types";
-import ChatBox from "./ChatBox";
 
 interface ProfileCardProps {
   profile: GitHubProfile;
@@ -190,8 +189,6 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
         <Twitter size={20} />
         Share on X
       </button>
-
-      <ChatBox profile={profile} commits={commits} usesConvex={usesConvex} />
     </div>
   );
 }
