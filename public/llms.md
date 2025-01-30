@@ -1,4 +1,4 @@
-# CommitRank.AI
+# GGithub Commit Ranking with AI - Github Commits - CommitRank.AI
 
 [![Commit Rank Logo](https://commitrank.ai/apple-touch-icon-180x180.png)](https://commitrank.ai/)
 

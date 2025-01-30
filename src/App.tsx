@@ -182,7 +182,7 @@ export function App() {
       <div className="max-w-7xl mx-auto pt-10">
         <div className="flex items-center justify-center gap-3 mb-2">
           <a href="https://commitrank.ai" className="flex items-center justify-center">
-            <h1 className="text-4xl font-bold text-center">GitHub Commits Ranking</h1>
+            <h1 className="text-4xl font-bold text-center">GitHub Commit Ranking</h1>
           </a>
         </div>
 
@@ -191,19 +191,23 @@ export function App() {
           URL below.
         </p>
 
-        <div
-          className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-8
-        ">
+        <div className="flex items-center justify-center gap-2 text-med text-gray-500 mb-8">
           <a href="https://github.com/waynesutton/commitrank">Open Source project built with</a>
           <a
             href="https://convex.link/C9EptlP"
             target="_blank"
             rel="noopener noreferrer"
             className="text-grey-500 hover:underline flex items-center gap-1">
-            <Database size={16} />
-            Convex.dev
+            <img
+              src="/convex-black.svg"
+              alt="Convex"
+              width="16"
+              height="16"
+              className="text-gray-500"
+            />
+            convex.dev
           </a>
-          {" | "}
+          {" |"}
           <a
             href="https://openai.com/"
             target="_blank"
@@ -229,32 +233,29 @@ export function App() {
           </a>
         </div>
 
-        <form onSubmit={handleSubmit} className="mb-12">
-          <div className="flex gap-4 max-w-2xl mx-auto">
-            <div className="flex-1 relative">
-              <input
-                type="text"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="Enter GitHub profile URL"
-                className="w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-[#222222] focus:border-transparent"
-              />
-              <Search className="absolute right-3 top-2.5 text-gray-400" size={20} />
-            </div>
+        <form onSubmit={handleSubmit} className="max-w-xl mx-auto mb-12">
+          <div className="flex gap-4">
+            <input
+              type="text"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="Enter GitHub profile URL"
+              className="flex-1 px-4 py-2 text-lg border rounded-lg focus:ring-2 focus:ring-[#222222] focus:border-transparent"
+            />
             <button
               type="submit"
-              className="px-6 py-2 bg-[#222222] text-white rounded-lg hover:bg-[#333333] disabled:opacity-50">
+              className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors whitespace-nowrap">
               Start Ranking
             </button>
           </div>
-          {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+          {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
         </form>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="w-full lg:w-72 flex-shrink-0">
+        <div className="flex px-4">
+          <div className="w-72 shrink-0">
             <div className="sticky top-4 bg-white rounded-lg shadow-md p-6">
               <h2 className="text-xl font-bold mb-2">Ranking Categories</h2>
-              <div className="flex gap-4 mb-6">
+              <div className="flex gap-4 mb-4">
                 <button
                   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                   className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1">
@@ -269,6 +270,16 @@ export function App() {
                   <ChevronDown size={16} />
                   Scroll to bottom
                 </button>
+              </div>
+              <div className="relative mb-6">
+                <div className="absolute inset-y-0 left-2 flex items-center pointer-events-none">
+                  <Search size={16} className="text-gray-500" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search GitHub usernames"
+                  className="w-full pl-8 pr-4 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-[#222222] focus:border-transparent"
+                />
               </div>
 
               <div className="space-y-6">
@@ -285,7 +296,7 @@ export function App() {
                     </div>
                     {category.profiles.length > 0 && (
                       <div className="pl-7 space-y-2">
-                        {category.profiles.map((profile: Profile) => (
+                        {category.profiles.map((profile) => (
                           <button
                             key={profile.login}
                             onClick={() => scrollToProfile(profile.login)}
@@ -301,32 +312,36 @@ export function App() {
             </div>
           </div>
 
-          <div className="flex-1">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-              {visibleProfiles.map((data: Profile) => (
-                <div key={data._id} ref={(el) => (profileRefs.current[data.login] = el)}>
-                  <ProfileCard profile={data} commits={data.commits} usesConvex={data.usesConvex} />
+          <div className="flex-1 pl-8 pr-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16.5rem] gap-y-8">
+              {profiles?.map((profile) => (
+                <div key={profile._id} className="w-full max-w-[300px] mx-auto">
+                  <ProfileCard
+                    profile={profile}
+                    commits={profile.commits}
+                    usesConvex={profile.usesConvex}
+                  />
                 </div>
               ))}
             </div>
-
-            {hasMoreProfiles && (
-              <div className="mt-8 flex justify-center">
-                <button
-                  onClick={handleLoadMore}
-                  className="px-6 py-2 bg-[#222222] text-white rounded-lg hover:bg-[#333333] transition-colors">
-                  Load More
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
         <footer className="mt-16 pb-8">
           <hr className="border-gray-200 mb-6" />
-          <div className="text-center text-sm text-gray-500">
+          <div className="text-center text-med text-gray-500">
             <p className="mb-4">
-              Database powered by <a href="https://convex.link/C9EptlP"> convex.dev</a>
+              Database powered by{" "}
+              <a href="https://convex.link/C9EptlP" className="inline-flex items-center">
+                <img
+                  src="/convex-black.svg"
+                  alt="Convex"
+                  width="16"
+                  height="16"
+                  className="text-gray-500"
+                />
+                <span className="ml-2">convex.dev</span>
+              </a>
             </p>
             <div className="flex justify-center gap-6">
               <a

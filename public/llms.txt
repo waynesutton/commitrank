@@ -4,7 +4,7 @@
 
 [![Commit Rank Logo](https://commitrank.ai/apple-touch-icon-180x180.png)**CommitRank.AI**](https://commitrank.ai/)
 
-Rank the best developers on GitHub with AI. Just paste the GitHub profile URL below.
+Github Commit Ranking with AI - find and rank developers Github.com profile based on commits
 
 [Open Source project built with](https://github.com/waynesutton/commitrank) [Convex.dev](https://convex.link/C9EptlP) \\| [OpenAI](https://openai.com/) \\| [TanStack](https://tanstack.com/) \\| [Bolt.new](https://bolt.new/)
 
