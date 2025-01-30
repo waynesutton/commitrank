@@ -28,6 +28,7 @@ type Profile = Doc<"profiles"> & GitHubProfile;
 export function App() {
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [visibleCards, setVisibleCards] = useState(1000);
   const profileRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const storeProfile = useMutation(api.profiles.storeProfile);
@@ -114,16 +115,26 @@ export function App() {
     setVisibleCards((prev) => prev + 6);
   };
 
-  const visibleProfiles = profiles.slice(0, visibleCards);
-  const hasMoreProfiles = profiles.length > visibleCards;
+  const filteredProfiles = profiles.filter((profile) =>
+    profile.login.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  const overloadProfiles = profiles.filter((p: Profile) => p.commits >= 100000);
-  const hackerProfiles = profiles.filter((p: Profile) => p.commits >= 10000 && p.commits < 100000);
-  const wizardProfiles = profiles.filter((p: Profile) => p.commits >= 5000 && p.commits < 10000);
-  const samuraiProfiles = profiles.filter((p: Profile) => p.commits >= 1000 && p.commits < 5000);
-  const explorerProfiles = profiles.filter((p: Profile) => p.commits < 10);
-  const noobProfiles = profiles.filter((p: Profile) => p.commits >= 10 && p.commits < 1000);
-  const convexProfiles = profiles.filter((p: Profile) => p.usesConvex);
+  const visibleProfiles = filteredProfiles.slice(0, visibleCards);
+  const hasMoreProfiles = filteredProfiles.length > visibleCards;
+
+  const overloadProfiles = filteredProfiles.filter((p: Profile) => p.commits >= 100000);
+  const hackerProfiles = filteredProfiles.filter(
+    (p: Profile) => p.commits >= 10000 && p.commits < 100000
+  );
+  const wizardProfiles = filteredProfiles.filter(
+    (p: Profile) => p.commits >= 5000 && p.commits < 10000
+  );
+  const samuraiProfiles = filteredProfiles.filter(
+    (p: Profile) => p.commits >= 1000 && p.commits < 5000
+  );
+  const explorerProfiles = filteredProfiles.filter((p: Profile) => p.commits < 10);
+  const noobProfiles = filteredProfiles.filter((p: Profile) => p.commits >= 10 && p.commits < 1000);
+  const convexProfiles = filteredProfiles.filter((p: Profile) => p.usesConvex);
 
   const categories = [
     {
@@ -277,6 +288,8 @@ export function App() {
                 </div>
                 <input
                   type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search GitHub usernames"
                   className="w-full pl-8 pr-4 py-2 text-sm border rounded-lg focus:ring-2 focus:ring-[#222222] focus:border-transparent"
                 />
@@ -314,7 +327,7 @@ export function App() {
 
           <div className="flex-1 pl-8 pr-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16.5rem] gap-y-8">
-              {profiles?.map((profile) => (
+              {filteredProfiles?.map((profile) => (
                 <div key={profile._id} className="w-full max-w-[300px] mx-auto">
                   <ProfileCard
                     profile={profile}
