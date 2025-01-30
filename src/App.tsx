@@ -35,10 +35,13 @@ export function App() {
   const profiles = useQuery(api.profiles.getProfiles) || [];
 
   const scrollToProfile = (login: string) => {
-    profileRefs.current[login]?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+    const element = document.getElementById(login);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   };
 
   const checkForConvex = async (username: string) => {
@@ -328,7 +331,7 @@ export function App() {
           <div className="flex-1 pl-8 pr-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16.5rem] gap-y-8">
               {filteredProfiles?.map((profile) => (
-                <div key={profile._id} className="w-full max-w-[300px] mx-auto">
+                <div key={profile._id} ref={(el) => (profileRefs.current[profile.login] = el)}>
                   <ProfileCard
                     profile={profile}
                     commits={profile.commits}
