@@ -101,7 +101,7 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
   return (
     <div
       id={profile.login}
-      className={`rounded-lg shadow-xl p-6 w-[450px] mx-auto ${cardClass} transition-colors duration-300`}>
+      className={`rounded-lg shadow-xl p-6 w-[400px] mx-auto ${cardClass} transition-colors duration-300`}>
       <div className="flex justify-between items-start mb-4">
         <img
           src={profile.avatar_url}

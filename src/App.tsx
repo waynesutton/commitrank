@@ -193,7 +193,7 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FFFFFF] via-[#F3F2F2] to-[#FFFFFF]">
-      <div className="max-w-7xl mx-auto pt-10">
+      <div className="w-full mx-auto pt-10">
         <div className="flex items-center justify-center gap-3 mb-2">
           <a href="https://commitrank.ai" className="flex items-center justify-center">
             <h1 className="text-4xl font-bold text-center">GitHub Commit Ranking</h1>
@@ -329,7 +329,7 @@ export function App() {
           </div>
 
           <div className="flex-1 pl-8 pr-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16.5rem] gap-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredProfiles?.map((profile) => (
                 <div key={profile._id} ref={(el) => (profileRefs.current[profile.login] = el)}>
                   <ProfileCard
