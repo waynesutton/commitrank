@@ -266,8 +266,8 @@ export function App() {
         </form>
 
         <div className="flex px-4">
-          <div className="w-72 shrink-0">
-            <div className="sticky top-4 bg-white rounded-lg shadow-md p-6">
+          <div className="w-64 shrink-0">
+            <div className="sticky top-4 bg-white rounded-lg shadow-md p-6 max-h-[calc(100vh-2rem)] overflow-y-auto">
               <h2 className="text-xl font-bold mb-2">Ranking Categories</h2>
               <div className="flex gap-4 mb-4">
                 <button
