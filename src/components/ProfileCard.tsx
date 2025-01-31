@@ -14,6 +14,7 @@ import {
   Sprout,
   Compass,
   Database,
+  Share,
 } from "lucide-react";
 import { GitHubProfile } from "../types";
 
@@ -25,12 +26,13 @@ interface ProfileCardProps {
 
 export default function ProfileCard({ profile, commits, usesConvex }: ProfileCardProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showCopyModal, setShowCopyModal] = useState(false);
 
-  const shareOnTwitter = () => {
-    const rankLabel = getRankInfo().label;
+  const copyShareLink = () => {
     const url = `${window.location.origin}#${profile.login}`;
-    const text = `🎮 Just discovered ${profile.name} is a ${rankLabel} on Commit Rank with ${commits.toLocaleString()} commits! ${usesConvex ? "⚡ Convex Developer!" : ""} Check out their journey at ${url}`;
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, "_blank");
+    navigator.clipboard.writeText(url);
+    setShowCopyModal(true);
+    setTimeout(() => setShowCopyModal(false), 2000);
   };
 
   const cardClass = isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900";
@@ -106,11 +108,24 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
           alt={profile.name}
           className="w-24 h-24 rounded-full border-4 border-[#222222]"
         />
-        <button
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-          {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => copyShareLink()}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 relative"
+            title="Copy share link">
+            <Share size={20} />
+            {showCopyModal && (
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-black text-white text-sm py-1 px-3 rounded whitespace-nowrap">
+                URL copied to clipboard!
+              </div>
+            )}
+          </button>
+          <button
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+        </div>
       </div>
 
       <h2 className="text-2xl font-bold mt-4">{profile.name}</h2>
@@ -182,13 +197,6 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
           </a>
         </div>
       </div>
-
-      <button
-        onClick={shareOnTwitter}
-        className="mt-6 w-full flex items-center justify-center gap-2 bg-[#222222] text-white py-2 px-4 rounded-lg hover:bg-[#333333] transition-colors">
-        <Twitter size={20} />
-        Share on X
-      </button>
     </div>
   );
 }
