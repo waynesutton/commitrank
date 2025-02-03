@@ -271,12 +271,6 @@ export function App() {
               <h2 className="text-xl font-bold mb-2">Ranking Categories</h2>
               <div className="flex gap-4 mb-4">
                 <button
-                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                  className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1">
-                  <ChevronUp size={16} />
-                  Scroll to top
-                </button>
-                <button
                   onClick={() =>
                     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })
                   }
@@ -325,6 +319,12 @@ export function App() {
                   </div>
                 ))}
               </div>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1 pt-7">
+                <ChevronUp size={16} />
+                Scroll to top
+              </button>
             </div>
           </div>
 
