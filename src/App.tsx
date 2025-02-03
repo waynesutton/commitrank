@@ -265,7 +265,7 @@ export function App() {
           {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
         </form>
 
-        <div className="flex px-4">
+        <div className="flex px-4 justify-center">
           <div className="w-64 shrink-0">
             <div className="sticky top-4 bg-white rounded-lg shadow-md p-6 max-h-[calc(100vh-2rem)] overflow-y-auto">
               <h2 className="text-xl font-bold mb-2">Ranking Categories</h2>
@@ -328,7 +328,7 @@ export function App() {
             </div>
           </div>
 
-          <div className="flex-1 pl-8 pr-4">
+          <div className="flex-1 pl-8 pr-4 max-w-[850px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredProfiles?.map((profile) => (
                 <div key={profile._id} ref={(el) => (profileRefs.current[profile.login] = el)}>
