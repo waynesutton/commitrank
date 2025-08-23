@@ -174,3 +174,17 @@ export const getProfiles = query({
     return await ctx.db.query("profiles").order("desc").take(1000);
   },
 });
+
+export const backfillScores = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const profiles = await ctx.db.query("profiles").collect();
+    for (const profile of profiles) {
+      if (profile.score === undefined) {
+        await ctx.scheduler.runAfter(0, internal.github.fetchAndScoreProfile, {
+          login: profile.login,
+        });
+      }
+    }
+  },
+});
