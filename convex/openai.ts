@@ -5,10 +5,6 @@ import OpenAI from "openai";
 import { Doc } from "./_generated/dataModel";
 import { internal } from "./_generated/api";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 export const generateStory = internalAction({
   args: {
     profileId: v.id("profiles"),
@@ -18,6 +14,9 @@ export const generateStory = internalAction({
     score: v.number(),
   },
   handler: async (ctx, { profileId, name, login, bio, score }) => {
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
     const prompt = `
       Create a short, creative "tale" about a GitHub developer.
       Imagine them as a character in a fantasy world.
