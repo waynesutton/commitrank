@@ -26,6 +26,11 @@ async function githubAPI(path: string, params?: Record<string, any>) {
 export const fetchAndScoreProfile = internalAction({
   args: { login: v.string() },
   handler: async (ctx, { login }) => {
+    if (!GITHUB_TOKEN) {
+      console.warn(
+        "GITHUB_TOKEN environment variable not set. Using unauthenticated GitHub API requests, which are severely rate-limited.",
+      );
+    }
     try {
       // Fetch all metrics in parallel
       // 1. Fetch base profile data
@@ -176,60 +181,28 @@ export const fetchAndScoreProfile = internalAction({
       // After storing, trigger a score recalculation for all profiles
       await ctx.scheduler.runAfter(0, internal.scores.recalculateScores);
     } catch (error: any) {
-      console.error(`Error fetching data for ${login}:`, error);
+      console.error(
+        `Error fetching data for ${login}. Full error:`,
+        JSON.stringify(error.response?.data, null, 2),
+      );
 
-      // Check if it's a private profile (403 Forbidden)
-      if (error.response?.status === 403) {
-        // Try to get basic public profile data only
-        try {
-          const basicProfile = await githubAPI(`/users/${login}`);
-          const profile = basicProfile.data;
+      let errorMessage =
+        "An unknown error occurred while fetching GitHub data.";
 
-          // Store basic profile with limited data and a note about privacy
-          await ctx.runMutation(internal.profiles.storeProfileMetrics, {
-            login: profile.login,
-            name: profile.name ?? profile.login,
-            avatar_url: profile.avatar_url,
-            bio: profile.bio || "This profile is private",
-            public_repos: profile.public_repos || 0,
-            followers: profile.followers || 0,
-            following: profile.following || 0,
-            html_url: profile.html_url,
-            twitter_username: profile.twitter_username ?? undefined,
-            blog: profile.blog ?? undefined,
-            location: profile.location ?? undefined,
-            // Empty arrays for private profiles
-            commitTimestamps: [],
-            mergedPrTimestamps: [],
-            starTimestamps: [],
-            prMerged: 0,
-            prTotal: 0,
-            issuesClosed: 0,
-            languageBreadth: 0,
-            usesConvex: false,
-            commits: 0,
-          });
-
-          // Set a special error message for private profiles
-          await ctx.runMutation(internal.profiles.storeProfileError, {
-            login,
-            error:
-              "This GitHub profile is private. Only basic public information is available.",
-          });
-        } catch (basicError: any) {
-          // If even basic profile fails, store the original error
-          await ctx.runMutation(internal.profiles.storeProfileError, {
-            login,
-            error: error.message || "An unknown error occurred",
-          });
-        }
-      } else {
-        // Store the error message for other types of errors
-        await ctx.runMutation(internal.profiles.storeProfileError, {
-          login,
-          error: error.message || "An unknown error occurred",
-        });
+      if (error.response?.data?.message) {
+        errorMessage = `GitHub API Error: ${error.response.data.message}`;
+      } else if (error.message) {
+        errorMessage = error.message;
       }
+
+      // Log the specific error to the console for debugging
+      console.error(`Storing error for ${login}: ${errorMessage}`);
+
+      // Store the specific error message
+      await ctx.runMutation(internal.profiles.storeProfileError, {
+        login,
+        error: errorMessage,
+      });
     }
   },
 });
