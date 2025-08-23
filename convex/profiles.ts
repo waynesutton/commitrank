@@ -1,4 +1,5 @@
 import {
+  internalAction,
   internalMutation,
   internalQuery,
   mutation,
@@ -175,16 +176,36 @@ export const getProfiles = query({
   },
 });
 
-export const backfillScores = internalMutation({
+export const backfillScores = internalAction({
   args: {},
   handler: async (ctx) => {
-    const profiles = await ctx.db.query("profiles").collect();
-    for (const profile of profiles) {
-      if (profile.score === undefined) {
-        await ctx.scheduler.runAfter(0, internal.github.fetchAndScoreProfile, {
-          login: profile.login,
-        });
-      }
+    console.log("Starting backfill process for profiles without scores...");
+
+    const profiles = await ctx.runQuery(internal.profiles.getAllProfiles);
+    const profilesNeedingScores = profiles.filter(
+      (profile) => profile.score === undefined,
+    );
+
+    console.log(
+      `Found ${profilesNeedingScores.length} profiles that need scores out of ${profiles.length} total profiles`,
+    );
+
+    for (const profile of profilesNeedingScores) {
+      console.log(`Scheduling score calculation for profile: ${profile.login}`);
+      await ctx.scheduler.runAfter(0, internal.github.fetchAndScoreProfile, {
+        login: profile.login,
+      });
     }
+
+    console.log(
+      `Backfill complete. Scheduled ${profilesNeedingScores.length} profiles for scoring.`,
+    );
+  },
+});
+
+export const getAllProfiles = internalQuery({
+  args: {},
+  handler: async (ctx): Promise<Doc<"profiles">[]> => {
+    return await ctx.db.query("profiles").collect();
   },
 });
