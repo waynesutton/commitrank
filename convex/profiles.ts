@@ -183,22 +183,45 @@ export const backfillScores = internalAction({
 
     const profiles = await ctx.runQuery(internal.profiles.getAllProfiles);
     const profilesNeedingScores = profiles.filter(
-      (profile) => profile.score === undefined,
+      (profile) => profile.score === undefined && !profile.error,
     );
 
     console.log(
       `Found ${profilesNeedingScores.length} profiles that need scores out of ${profiles.length} total profiles`,
     );
 
+    let successCount = 0;
+    let errorCount = 0;
+
     for (const profile of profilesNeedingScores) {
-      console.log(`Scheduling score calculation for profile: ${profile.login}`);
-      await ctx.scheduler.runAfter(0, internal.github.fetchAndScoreProfile, {
-        login: profile.login,
-      });
+      try {
+        console.log(
+          `Scheduling score calculation for profile: ${profile.login}`,
+        );
+        await ctx.scheduler.runAfter(0, internal.github.fetchAndScoreProfile, {
+          login: profile.login,
+        });
+        successCount++;
+
+        // Add a small delay to avoid overwhelming the scheduler
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      } catch (error: any) {
+        console.error(
+          `Failed to schedule scoring for ${profile.login}:`,
+          error.message,
+        );
+        errorCount++;
+
+        // Store the scheduling error
+        await ctx.runMutation(internal.profiles.storeProfileError, {
+          login: profile.login,
+          error: `Scheduling failed: ${error.message}`,
+        });
+      }
     }
 
     console.log(
-      `Backfill complete. Scheduled ${profilesNeedingScores.length} profiles for scoring.`,
+      `Backfill complete. Successfully scheduled: ${successCount}, Failed: ${errorCount}`,
     );
   },
 });
