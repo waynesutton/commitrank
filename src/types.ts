@@ -10,12 +10,9 @@ export interface GitHubProfile {
   twitter_username?: string;
   blog?: string;
   location?: string;
-  commits: number;
-  usesConvex: boolean;
 }
 
 export interface ProfileData {
   profile: GitHubProfile;
-  commits: number;
-  usesConvex: boolean;
+  score?: number;
 }

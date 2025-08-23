@@ -1,107 +1,68 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Twitter,
   Github,
   Globe,
   MapPin,
-  Sun,
-  Moon,
-  Share2,
-  Zap,
-  Code2,
-  Wand2,
-  Sword,
-  Sprout,
-  Compass,
-  Database,
   Share,
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+  Info,
+  X,
 } from "lucide-react";
-import { GitHubProfile } from "../types";
+import { Doc } from "../../convex/_generated/dataModel";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
 
+type Profile = Doc<"profiles">;
 interface ProfileCardProps {
-  profile: GitHubProfile;
-  commits: number;
-  usesConvex: boolean;
+  profile: Profile;
 }
 
-export default function ProfileCard({ profile, commits, usesConvex }: ProfileCardProps) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+interface LoadingProfileCardProps {
+  username: string;
+}
+
+export default function ProfileCard({ profile }: ProfileCardProps) {
   const [showCopyModal, setShowCopyModal] = useState(false);
+  const [isTaleExpanded, setIsTaleExpanded] = useState(false);
+  const [isScoreModalOpen, setIsScoreModalOpen] = useState(false);
+  const generateStory = useMutation(api.profiles.generateStory);
+
+  const getRank = (score: number | null | undefined): string => {
+    if (score === null || score === undefined) return "Basic";
+    if (score >= 90) return "Legendary";
+    if (score >= 75) return "Elite";
+    if (score >= 60) return "Hacker";
+    if (score >= 40) return "Cracked";
+    if (score >= 20) return "Noob";
+    return "Basic";
+  };
 
   const copyShareLink = () => {
-    const url = `${window.location.origin}#${profile.login}`;
+    const url = `${window.location.origin}${window.location.pathname}#${profile.login}`;
     navigator.clipboard.writeText(url);
     setShowCopyModal(true);
     setTimeout(() => setShowCopyModal(false), 2000);
   };
 
-  const cardClass = isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900";
-
-  const getRankInfo = () => {
-    if (commits >= 100000) return { icon: Zap, label: "Overload", color: "text-purple-500" };
-    if (commits >= 10000) return { icon: Code2, label: "Hacker", color: "text-red-500" };
-    if (commits >= 5000) return { icon: Wand2, label: "Wizard", color: "text-blue-500" };
-    if (commits >= 1000) return { icon: Sword, label: "Samurai", color: "text-indigo-500" };
-    if (commits >= 10) return { icon: Sprout, label: "Noob", color: "text-green-500" };
-    return { icon: Compass, label: "Explorer", color: "text-yellow-500" };
+  const handleToggleTale = () => {
+    setIsTaleExpanded(!isTaleExpanded);
+    if (
+      !profile.story &&
+      profile.score !== null &&
+      profile.score !== undefined
+    ) {
+      generateStory({ profileId: profile._id });
+    }
   };
-
-  const generateStory = () => {
-    if (commits >= 100000) {
-      const stories = [
-        `In the digital realm, ${profile.name} stands as a legendary Overload, their ${commits.toLocaleString()} commits crackling with raw coding energy. Like a power plant of pure innovation, they've generated enough code to light up entire tech ecosystems. Their GitHub history reads like a saga of digital transformation, each commit a bolt of brilliance in the vast storm of development.`,
-        `Legends speak of ${profile.name}, the Overload whose keyboard never cools. With ${commits.toLocaleString()} commits, they've transcended normal development patterns, becoming one with the code itself. Their repository is a testament to their mastery, a beacon of light in the darkness of unsolved problems.`,
-      ];
-      return stories[Math.floor(Math.random() * stories.length)];
-    }
-
-    if (commits >= 10000) {
-      const stories = [
-        `Deep in the matrix of code, ${profile.name} moves like a digital phantom, their ${commits.toLocaleString()} commits telling tales of countless systems conquered and algorithms mastered. This Hacker's repository is a masterclass in digital craftsmanship, each commit a piece of the puzzle in their grand scheme of innovation.`,
-        `With fingers dancing across the keyboard, ${profile.name} has carved their name into the bedrock of GitHub with ${commits.toLocaleString()} precise commits. This Hacker's code flows like poetry, each pull request a verse in their epic saga of development.`,
-      ];
-      return stories[Math.floor(Math.random() * stories.length)];
-    }
-
-    if (commits >= 5000) {
-      const stories = [
-        `In the grand library of code, ${profile.name} stands as a true Wizard, their ${commits.toLocaleString()} commits forming spells of pure logic and innovation. Their repository is their spellbook, each commit a carefully crafted incantation that brings digital dreams to life.`,
-        `${profile.name}, the Code Wizard, has woven ${commits.toLocaleString()} commits into a tapestry of technical excellence. Their mastery of the digital arts is evident in every line of code, each commit a step in their journey to programming enlightenment.`,
-      ];
-      return stories[Math.floor(Math.random() * stories.length)];
-    }
-
-    if (commits >= 1000) {
-      const stories = [
-        `In the digital dojo of ${profile.name}, each commit is a stroke of the keyboard-katana. With ${commits.toLocaleString()} precise cuts through the codebase, this noble developer has earned their place among the Samurai of Silicon Valley. Their git log tells tales of epic bug battles and feature quests that will be remembered in the scrolls of GitHub for generations to come.`,
-        `Legend speaks of ${profile.name}, the Code Samurai, whose ${commits.toLocaleString()} commits are like cherry blossoms in the wind - beautiful, purposeful, and ever-growing. Through countless pull requests and merge conflicts, they have maintained their honor, following the way of Clean Code with unwavering dedication.`,
-      ];
-      return stories[Math.floor(Math.random() * stories.length)];
-    }
-
-    if (commits >= 10) {
-      const stories = [
-        `Every journey begins with a single commit, and ${profile.name} has already taken ${commits.toLocaleString()} steps on their path to coding mastery. Like a sprout reaching for the sun, their potential grows with each new line of code, each commit a leaf in their growing garden of development.`,
-        `In the vast forest of code, ${profile.name} is a promising sapling, their ${commits.toLocaleString()} commits marking the beginning of what promises to be a mighty development journey. Watch as they grow, one commit at a time, into a towering presence in the tech ecosystem.`,
-      ];
-      return stories[Math.floor(Math.random() * stories.length)];
-    }
-
-    // Explorer (less than 10 commits)
-    const stories = [
-      `Standing at the threshold of the coding universe, ${profile.name} takes their first brave steps with ${commits.toLocaleString()} commits. Like an explorer charting unknown territories, they venture forth into the vast expanse of development, each commit a new discovery in their programming journey.`,
-      `${profile.name} is an intrepid explorer in the world of code, their ${commits.toLocaleString()} commits marking the beginning of an exciting adventure. With curiosity as their compass, they're setting out to discover the endless possibilities that await in the realm of development.`,
-    ];
-    return stories[Math.floor(Math.random() * stories.length)];
-  };
-
-  const rank = getRankInfo();
-  const RankIcon = rank.icon;
 
   return (
     <div
       id={profile.login}
-      className={`rounded-lg shadow-xl p-6 w-[400px] mx-auto ${cardClass} transition-colors duration-300`}>
+      className={`relative rounded-lg shadow-xl p-4 sm:p-6 w-full max-w-[400px] mx-auto bg-white text-gray-900 transition-all duration-300 pb-16`}
+    >
       <div className="flex justify-between items-start mb-4">
         <img
           src={profile.avatar_url}
@@ -111,8 +72,9 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
         <div className="flex gap-2">
           <button
             onClick={() => copyShareLink()}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 relative"
-            title="Copy share link">
+            className="p-2 rounded-full hover:bg-gray-200 relative"
+            title="Copy share link"
+          >
             <Share size={20} />
             {showCopyModal && (
               <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-black text-white text-sm py-1 px-3 rounded whitespace-nowrap">
@@ -120,82 +82,268 @@ export default function ProfileCard({ profile, commits, usesConvex }: ProfileCar
               </div>
             )}
           </button>
-          <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mt-4">{profile.name}</h2>
-      <p className="text-gray-600 dark:text-gray-400">@{profile.login}</p>
+      <h2 className="text-xl sm:text-2xl font-bold mt-4 break-words">
+        {profile.name}
+      </h2>
+      <p className="text-gray-600 break-words">@{profile.login}</p>
 
-      <p className="mt-4">{profile.bio}</p>
+      <p className="mt-4 break-words">{profile.bio}</p>
 
       <div className="mt-6 space-y-2">
-        <p className="text-xl font-bold">{commits.toLocaleString()} Total Commits</p>
-        <div className={`flex items-center gap-2 ${rank.color} font-semibold`}>
-          <RankIcon size={20} />
-          <span>{rank.label}</span>
+        <div
+          className="flex items-center gap-2 font-semibold relative"
+          onMouseEnter={() => setIsScoreModalOpen(true)}
+          onMouseLeave={() => setIsScoreModalOpen(false)}
+        >
+          <Github size={20} className="text-slate-600" />
+          <div className="flex flex-col gap-1">
+            <span className="flex items-center gap-1.5 cursor-pointer">
+              Developer Impact Score:
+              <Info size={16} className="text-gray-500" />
+              <span className="text-2xl font-bold flex items-center gap-2">
+                {profile.error ? (
+                  "Error"
+                ) : profile.score ? (
+                  profile.score.toFixed(2)
+                ) : (
+                  <>
+                    <Loader2 size={20} className="animate-spin" />
+                    Calculating...
+                  </>
+                )}
+              </span>
+            </span>
+            <span className="text-sm text-gray-600">
+              GitHub Commits (this year): {profile.commits || 0}
+            </span>
+          </div>
+          {isScoreModalOpen && profile.score && (
+            <div className="absolute top-full mt-2 left-0 w-80 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-10 text-sm">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-bold text-base">Score Breakdown</h3>
+                <button
+                  onClick={() => setIsScoreModalOpen(false)}
+                  className="p-1 rounded-full hover:bg-gray-200"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+              <ul className="space-y-1 text-gray-700">
+                <li className="flex justify-between">
+                  <span>Recency-decayed Commits:</span>
+                  <span className="font-semibold">
+                    {profile.commitTimestamps?.length ?? 0}
+                  </span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Active Repositories:</span>
+                  <span className="font-semibold">{profile.public_repos}</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Followers:</span>
+                  <span className="font-semibold">{profile.followers}</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Recency-decayed Merged PRs:</span>
+                  <span className="font-semibold">
+                    {profile.mergedPrTimestamps?.length ?? 0}
+                  </span>
+                </li>
+                <li className="flex justify-between">
+                  <span>PR Acceptance Rate:</span>
+                  <span className="font-semibold">
+                    {profile.prTotal
+                      ? `${(
+                          ((profile.prMerged ?? 0) / profile.prTotal) *
+                          100
+                        ).toFixed(1)}%`
+                      : "N/A"}
+                  </span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Recency-decayed Stars:</span>
+                  <span className="font-semibold">
+                    {profile.starTimestamps?.length ?? 0}
+                  </span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Issues Closed:</span>
+                  <span className="font-semibold">
+                    {profile.issuesClosed ?? 0}
+                  </span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Language Breadth:</span>
+                  <span className="font-semibold">
+                    {profile.languageBreadth ?? 0}
+                  </span>
+                </li>
+              </ul>
+              <p className="mt-4 text-xs text-gray-500">
+                This is a summary of raw metrics. For the full formula, see the{" "}
+                <a
+                  href="#algorithm-breakdown"
+                  className="text-blue-500 hover:underline"
+                  onClick={() => setIsScoreModalOpen(false)}
+                >
+                  Developer Impact Score Algorithm
+                </a>{" "}
+                in the footer.
+              </p>
+            </div>
+          )}
         </div>
-        {usesConvex && (
-          <div className="flex items-center gap-2 text-orange-500 font-semibold">
-            <Database size={20} />
-            <span>Convex Developer</span>
+        {profile.error && (
+          <div className="text-red-500 text-sm mt-2">
+            <strong>Could not rank profile:</strong> {profile.error}
           </div>
         )}
       </div>
 
-      <div className="mt-6 p-4 bg-[#F5F5F5] dark:bg-gray-800 rounded-lg">
-        <h3 className={`flex items-center gap-2 text-lg font-semibold ${rank.color} mb-2`}>
-          <RankIcon size={16} />
-          The Tale of a {rank.label}
-        </h3>
-        <p className="text-sm italic text-gray-800 dark:text-gray-200">{generateStory()}</p>
+      <div className="mt-4">
+        <button
+          onClick={handleToggleTale}
+          className="flex items-center justify-between w-full text-left font-semibold bg-[#E6E9EE] text-black p-2 rounded"
+        >
+          <span className="break-words pr-2">The Tale of {profile.name}</span>
+          <div className="flex-shrink-0">
+            {isTaleExpanded ? <ChevronUp /> : <ChevronDown />}
+          </div>
+        </button>
+        {isTaleExpanded && (
+          <div className="mt-2 text-gray-600 break-words">
+            {profile.story ? (
+              <div className="whitespace-pre-wrap">{profile.story}</div>
+            ) : profile.score ? (
+              <div className="flex items-center gap-2 animate-pulse">
+                <Loader2 size={16} className="animate-spin" />
+                The bard is composing a tale...
+              </div>
+            ) : (
+              "The tale awaits the hero's score..."
+            )}
+          </div>
+        )}
       </div>
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-6 space-y-2 mb-5">
         {profile.location && (
           <div className="flex items-center gap-2">
-            <MapPin size={16} />
-            <span>{profile.location}</span>
+            <MapPin size={16} className="flex-shrink-0" />
+            <span className="break-words">{profile.location}</span>
           </div>
         )}
         {profile.blog && (
           <div className="flex items-center gap-2">
-            <Globe size={16} />
+            <Globe size={16} className="flex-shrink-0" />
             <a
-              href={profile.blog.startsWith("http") ? profile.blog : `https://${profile.blog}`}
+              href={
+                profile.blog.startsWith("http")
+                  ? profile.blog
+                  : `https://${profile.blog}`
+              }
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:underline">
+              className="text-blue-500 hover:underline break-words"
+            >
               {profile.blog}
             </a>
           </div>
         )}
         {profile.twitter_username && (
           <div className="flex items-center gap-2">
-            <Twitter size={16} />
+            <Twitter size={16} className="flex-shrink-0" />
             <a
               href={`https://twitter.com/${profile.twitter_username}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:underline">
+              className="text-blue-500 hover:underline break-words"
+            >
               @{profile.twitter_username}
             </a>
           </div>
         )}
         <div className="flex items-center gap-2">
-          <Github size={16} />
+          <Github size={16} className="flex-shrink-0" />
           <a
             href={profile.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:underline">
+            className="text-blue-500 hover:underline break-words"
+          >
             GitHub Profile
           </a>
         </div>
+      </div>
+
+      {/* Category Banner */}
+      <div className="absolute bottom-0 left-0 right-0 bg-[#323232] text-white text-center py-2 rounded-b-lg">
+        <span className="font-semibold text-sm">{getRank(profile.score)}</span>
+      </div>
+    </div>
+  );
+}
+
+export function LoadingProfileCard({ username }: LoadingProfileCardProps) {
+  return (
+    <div
+      className={`relative rounded-lg shadow-xl p-4 sm:p-6 w-full max-w-[400px] mx-auto bg-white text-gray-900 transition-all duration-300 animate-pulse pb-16`}
+    >
+      <div className="flex justify-between items-start mb-4">
+        <div className="w-24 h-24 rounded-full border-4 border-[#222222] bg-gray-200"></div>
+        <div className="flex gap-2">
+          <div className="p-2 rounded-full bg-gray-200 w-10 h-10"></div>
+        </div>
+      </div>
+
+      <div className="w-32 h-6 bg-gray-200 rounded mt-4"></div>
+      <div className="w-24 h-4 bg-gray-200 rounded mt-2"></div>
+
+      <div className="w-full h-4 bg-gray-200 rounded mt-4"></div>
+
+      <div className="mt-6 space-y-2">
+        <div className="flex items-center gap-2 font-semibold">
+          <Github size={20} className="text-slate-600" />
+          <div className="flex flex-col gap-1">
+            <span className="flex items-center gap-2">
+              Developer Impact Score:{" "}
+              <span className="text-2xl font-bold flex items-center gap-2">
+                <Loader2 size={20} className="animate-spin" />
+                Loading @{username}...
+              </span>
+            </span>
+            <span className="text-sm text-gray-600">
+              GitHub Commits (this year):{" "}
+              <Loader2 size={12} className="animate-spin inline" />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <div className="flex items-center justify-between w-full text-left font-semibold">
+          <span>The Tale of {username}</span>
+          <ChevronDown className="text-gray-400" />
+        </div>
+        <div className="mt-2 text-gray-600 flex items-center gap-2">
+          <Loader2 size={16} className="animate-spin" />
+          Fetching GitHub data...
+        </div>
+      </div>
+
+      <div className="mt-6space-y-2">
+        <div className="flex items-center gap-2">
+          <Github size={16} />
+          <span className="text-blue-500">https://github.com/{username}</span>
+        </div>
+      </div>
+
+      {/* Category Banner */}
+      <div className="absolute bottom-0 left-0 right-0 bg-[#323232] text-white text-center py-2 rounded-b-lg">
+        <span className="font-semibold text-sm">Loading...</span>
       </div>
     </div>
   );
