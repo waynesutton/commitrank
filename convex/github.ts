@@ -95,46 +95,68 @@ export const fetchAndScoreProfile = internalAction({
       // 5. Fetch repos for language and star data
       const reposRes = await githubAPI(`/users/${login}/repos`, {
         per_page: 100,
+        sort: "pushed",
       });
       const repos = reposRes.data;
 
+      // Limit analysis to the top 30 most recently pushed repos to avoid rate limiting
+      const reposToAnalyze = repos.slice(0, 30);
+
       const oneYearAgo = new Date();
       oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-      const activeRepos = repos.filter(
+      const activeRepos = reposToAnalyze.filter(
         (r: any) => new Date(r.pushed_at) > oneYearAgo,
       ).length;
 
       let languageSet = new Set<string>();
-      for (const repo of repos) {
-        const languagesRes = await githubAPI(
-          `/repos/${login}/${repo.name}/languages`,
-        );
-        Object.keys(languagesRes.data).forEach((lang) => languageSet.add(lang));
+      for (const repo of reposToAnalyze) {
+        if (repo.fork) continue; // Skip forked repos for language analysis
+        try {
+          const languagesRes = await githubAPI(
+            `/repos/${login}/${repo.name}/languages`,
+          );
+          Object.keys(languagesRes.data).forEach((lang) =>
+            languageSet.add(lang),
+          );
+        } catch (error: any) {
+          console.warn(
+            `Could not fetch languages for repo ${repo.name}:`,
+            error.message,
+          );
+        }
       }
       const languageBreadth = languageSet.size;
 
       // 6. Fetch star timestamps
       let starTimestamps: number[] = [];
-      for (const repo of repos) {
+      for (const repo of reposToAnalyze) {
         if (repo.stargazers_count > 0) {
-          const stargazersRes = await githubAPI(
-            `/repos/${login}/${repo.name}/stargazers`,
-            {
-              headers: {
-                ...headers,
-                Accept: "application/vnd.github.v3.star+json",
+          try {
+            const stargazersRes = await githubAPI(
+              `/repos/${login}/${repo.name}/stargazers`,
+              {
+                headers: {
+                  ...headers,
+                  Accept: "application/vnd.github.v3.star+json",
+                },
+                per_page: 100,
               },
-              per_page: 100,
-            },
-          );
-          stargazersRes.data.forEach((star: any) => {
-            starTimestamps.push(new Date(star.starred_at).getTime());
-          });
+            );
+            stargazersRes.data.forEach((star: any) => {
+              starTimestamps.push(new Date(star.starred_at).getTime());
+            });
+          } catch (error: any) {
+            console.warn(
+              `Could not fetch stargazers for repo ${repo.name}:`,
+              error.message,
+            );
+          }
         }
       }
 
       // 7. Check for Convex usage (simplified)
-      const convexPromises = repos.map(async (repo: any) => {
+      const convexPromises = reposToAnalyze.map(async (repo: any) => {
+        if (repo.fork) return false;
         try {
           const { data: packageJson } = await axios.get(
             `https://raw.githubusercontent.com/${login}/${repo.name}/main/package.json`,

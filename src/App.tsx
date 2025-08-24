@@ -307,8 +307,6 @@ export function App() {
                     "Convex",
                   ];
 
-                  let globalIndex = 0;
-
                   return categoryOrder
                     .map((category) => {
                       const categoryProfiles = profilesByCategory[category];
@@ -317,19 +315,15 @@ export function App() {
 
                       return (
                         <div key={category} className="space-y-1">
-                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-1">
-                            {category} ({categoryProfiles.length})
+                          <div className="text-xs font-bold text-black uppercase tracking-wide px-1">
+                            {category}
                           </div>
                           {categoryProfiles.map((profile) => {
-                            globalIndex++;
                             return (
                               <div
                                 key={profile._id}
-                                className="flex items-center gap-2 pl-2"
+                                className="flex items-center gap-2"
                               >
-                                <span className="w-6 text-sm text-gray-500">
-                                  {globalIndex}.
-                                </span>
                                 <a
                                   href={`#${profile.login}`}
                                   className="text-sm text-gray-600 hover:text-[#222222] hover:underline"

@@ -6,8 +6,9 @@ import {
   query,
 } from "./_generated/server";
 import { v } from "convex/values";
-import { Doc } from "./_generated/dataModel";
+import { Doc, Id } from "./_generated/dataModel";
 import { internal } from "./_generated/api";
+import { paginationOptsValidator } from "convex/server";
 
 export const generateStory = mutation({
   args: {
@@ -176,53 +177,66 @@ export const getProfiles = query({
   },
 });
 
+export const getProfilesToBackfill = internalQuery({
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("profiles")
+      .filter((q) =>
+        q.and(
+          q.eq(q.field("score"), undefined),
+          q.eq(q.field("error"), undefined),
+        ),
+      )
+      .order("desc")
+      .paginate(args.paginationOpts);
+  },
+});
+
 export const backfillScores = internalAction({
   args: {},
   handler: async (ctx) => {
-    console.log("Starting backfill process for profiles without scores...");
+    console.log("Kicking off sequential backfill process...");
+    await ctx.scheduler.runAfter(0, internal.profiles.processBackfillBatch, {
+      cursor: null,
+    });
+  },
+});
 
-    const profiles = await ctx.runQuery(internal.profiles.getAllProfiles);
-    const profilesNeedingScores = profiles.filter(
-      (profile) => profile.score === undefined && !profile.error,
+export const processBackfillBatch = internalAction({
+  args: { cursor: v.union(v.string(), v.null()) },
+  handler: async (ctx, { cursor }) => {
+    const BATCH_SIZE = 5;
+    console.log(`Processing backfill batch starting with cursor: ${cursor}`);
+
+    const { page, isDone, continueCursor } = await ctx.runQuery(
+      internal.profiles.getProfilesToBackfill,
+      {
+        paginationOpts: { numItems: BATCH_SIZE, cursor: cursor },
+      },
     );
 
-    console.log(
-      `Found ${profilesNeedingScores.length} profiles that need scores out of ${profiles.length} total profiles`,
-    );
+    console.log(`Found ${page.length} profiles in this batch.`);
 
-    let successCount = 0;
-    let errorCount = 0;
-
-    for (const profile of profilesNeedingScores) {
-      try {
-        console.log(
-          `Scheduling score calculation for profile: ${profile.login}`,
-        );
-        await ctx.scheduler.runAfter(0, internal.github.fetchAndScoreProfile, {
-          login: profile.login,
-        });
-        successCount++;
-
-        // Add a small delay to avoid overwhelming the scheduler
-        await new Promise((resolve) => setTimeout(resolve, 100));
-      } catch (error: any) {
-        console.error(
-          `Failed to schedule scoring for ${profile.login}:`,
-          error.message,
-        );
-        errorCount++;
-
-        // Store the scheduling error
-        await ctx.runMutation(internal.profiles.storeProfileError, {
-          login: profile.login,
-          error: `Scheduling failed: ${error.message}`,
-        });
-      }
+    for (const profile of page) {
+      console.log(`Scheduling score calculation for profile: ${profile.login}`);
+      await ctx.scheduler.runAfter(0, internal.github.fetchAndScoreProfile, {
+        login: profile.login,
+      });
+      // Wait 2 seconds between each profile to be extra safe with rate limits
+      await new Promise((resolve) => setTimeout(resolve, 2000));
     }
 
-    console.log(
-      `Backfill complete. Successfully scheduled: ${successCount}, Failed: ${errorCount}`,
-    );
+    if (!isDone) {
+      console.log(
+        `Batch complete. Scheduling next batch with cursor: ${continueCursor}`,
+      );
+      await ctx.scheduler.runAfter(0, internal.profiles.processBackfillBatch, {
+        cursor: continueCursor,
+      });
+    } else {
+      console.log("Backfill process complete. All batches processed.");
+    }
   },
 });
 
@@ -230,5 +244,23 @@ export const getAllProfiles = internalQuery({
   args: {},
   handler: async (ctx): Promise<Doc<"profiles">[]> => {
     return await ctx.db.query("profiles").collect();
+  },
+});
+
+export const clearAllProfileErrors = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    console.log("Starting to clear errors from all profiles...");
+    const profiles = await ctx.db.query("profiles").collect();
+
+    let clearedCount = 0;
+    for (const profile of profiles) {
+      if (profile.error) {
+        await ctx.db.patch(profile._id, { error: undefined });
+        clearedCount++;
+      }
+    }
+
+    console.log(`Cleared errors from ${clearedCount} profiles.`);
   },
 });
